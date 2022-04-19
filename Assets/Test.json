@@ -1,0 +1,10 @@
+﻿[
+  {
+    "ImportableComponent" : {
+      "Index" : "Test"
+    },
+    "MoneyComponent":{
+      "Value" : -99999
+    }
+  }
+]
