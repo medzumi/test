@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ApplicationScripts.CodeExtensions;
 using ApplicationScripts.Ecs;
@@ -141,54 +142,77 @@ namespace ApplicationScripts.Logic.Config
     
     public class BindSystem<TLogicComponent, TBindData> : EcsSystemBase
         where TLogicComponent : struct
-        where TBindData : struct, IEcsPresenter<TLogicComponent>, IBindData
+        where TBindData : Presenter<TBindData>, IEcsPresenter<TLogicComponent>, new()
     {
         private IndexedEntityLibrarySystem<ImportableComponent, string> _librarySystem;
+        private EcsPool<ReferenceComponent<TBindData>> _bindDataPool;
+        private EcsPool<ListComponent<TBindData>> _bindListPool;
+        private EcsPool<BindComponent> _bindComponent;
         private EcsPool<TLogicComponent> _logicComponentPool;
-        private EcsPool<TBindData> _bindDataPool;
-        private EcsPool<ListComponent<TBindData>> _bindDatasPool;
-        private EcsPool<BindComponent> _bindPool;
         private EcsPool<ReferenceComponent<IViewModel>> _viewModelPool;
-        private collector _collector;
-        private collector _collector2;
+        private collector collector1;
+        private collector collecto2;
         private EcsWorld _world;
 
         public override void PreInit(EcsSystems systems)
         {
             base.PreInit(systems);
-            _world = systems.GetWorld();
-            _logicComponentPool = _world.GetPool<TLogicComponent>();
-            _bindDataPool = _world.GetPool<TBindData>();
-            _viewModelPool = _world.GetPool<ReferenceComponent<IViewModel>>();
         }
 
         public override void Run(EcsSystems systems)
         {
             base.Run(systems);
-            foreach (var entity in _collector)
+            foreach (var entity in collector1)
             {
-                var bindCommand = _bindPool.Read(entity);
-                var importableEntity = _librarySystem.GetEntity(bindCommand.Key);
-                if (_viewModelPool.Has(bindCommand.ToEntity))
+                foreach (var bindData in _bindListPool.Read(entity).ComponentData)
                 {
-                    var viewModel = _viewModelPool.Read(bindCommand.ToEntity).reference;
-                    var bindData = _bindDataPool.Read(importableEntity);
-                    bindData = viewModel.GetBindData<TBindData>(bindData);
-                    var disposable = viewModel.OnDispose((vm) =>
-                    {
-                        _bindDatasPool.Read(entity).ComponentData.Remove(bindData);
-                    });
-                    _bindDatasPool.Ensure(entity).ComponentData.Add(bindData);    
+                    bindData.Update(_logicComponentPool.Read(entity));
                 }
-                
-                
-                //GetDisposeComponent().Add   
+            }
+
+            foreach (var entity in collecto2)
+            {
+                var command = _bindComponent.Read(entity);
+                var bindId = command.Key;
+                var entityId = command.ToEntity;
+
+                if (_viewModelPool.Has(entityId))
+                {
+                    var viewModel = _viewModelPool.Read(entityId).reference;
+
+                    var data = _bindDataPool.Read(_librarySystem.GetEntity(bindId)).reference;
+                    data = viewModel.GetBindData(data);
+                    data.Initialize(_world, entity);
+                    
+                    var actionPresenter = ActionPresenter<TBindData>.Create();
+                    actionPresenter.Pool = _bindListPool;
+                    actionPresenter.Entity = entity;
+                    actionPresenter.Data = data;
+                    
+                    viewModel.AddTo(actionPresenter);
+                }
             }
         }
+    }
 
-        private DisposeComponent GetDisposeComponent()
+    public class ActionPresenter<TData> : Presenter<ActionPresenter<TData>> where TData : IDisposable
+    {
+        public EcsPool<ListComponent<TData>> Pool;
+        public int Entity;
+        public TData Data;
+
+        protected override void DisposeHandler()
         {
-            return _diosposer.Count > 0 ? _diosposer.Pop() : new DisposeComponent();
+            base.DisposeHandler();
+            if (Pool.Has(Entity))
+            {
+                ref var list =  ref Pool.Get(Entity);
+                list.ComponentData.Remove(Data);
+                if (list.ComponentData.Count == 0)
+                {
+                    Pool.Del(Entity);
+                }
+            }
         }
     }
 
@@ -221,12 +245,6 @@ namespace ApplicationScripts.Logic.Config
         {
             foreach (var entity in _collector2)
             {
-                _bindDataPool.Set(entity) = _viewModelPool
-                    .Read(entity)
-                    .reference
-                    .GetBindData(_bindDataPool.Read(entity));
-                _bindDataPool.Read(entity)
-                    .Initialize(_world, entity, _viewModelPool.Read(entity).reference.CancellationToken.Token);
             }
             
             foreach (var entity in _collector)

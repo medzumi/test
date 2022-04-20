@@ -10,6 +10,6 @@ namespace ViewModel
 
         object GetViewModelData(string propertyName);
 
-        IDisposable OnDispose(Action<IViewModel> action);
+        T AddTo<T>(T disposable) where T : IDisposable;
     }
 }

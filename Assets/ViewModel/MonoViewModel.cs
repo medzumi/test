@@ -21,6 +21,7 @@ namespace ViewModel
         }
 
         [SerializeField] private List<CustomPair> _customPairs = new List<CustomPair>();
+        private readonly List<IDisposable> _disposables = new List<IDisposable>();
 
         private void Awake()
         {
@@ -52,14 +53,20 @@ namespace ViewModel
             return GetViewModelDataHandler(key);
         }
 
-        IDisposable IViewModel.OnDispose(Action<IViewModel> action)
+        public T AddTo<T>(T disposable) where T : IDisposable
         {
-            return gameObject.OnDisableAsObservable()
-                .Subscribe(t => action?.Invoke(this));
+            _disposables.Add(disposable);
+            return disposable;
         }
 
         private void OnDisable()
         {
+            foreach (var disposable in _disposables)
+            {
+                disposable?.Dispose();
+            }
+            _disposables.Clear();
+            
             foreach (var keyValuePair in _viewModelDatas)
             {
                 if (keyValuePair.Value is IViewModelProperty viewModelProperty)
