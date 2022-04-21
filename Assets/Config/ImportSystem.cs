@@ -139,118 +139,90 @@ namespace ApplicationScripts.Logic.Config
         public string Key;
         public int ToEntity;
     }
-    
-    public class BindSystem<TLogicComponent, TBindData> : EcsSystemBase
-        where TLogicComponent : struct
-        where TBindData : Presenter<TBindData>, IEcsPresenter<TLogicComponent>, new()
-    {
-        private IndexedEntityLibrarySystem<ImportableComponent, string> _librarySystem;
-        private EcsPool<ReferenceComponent<TBindData>> _bindDataPool;
-        private EcsPool<ListComponent<TBindData>> _bindListPool;
-        private EcsPool<BindComponent> _bindComponent;
-        private EcsPool<TLogicComponent> _logicComponentPool;
-        private EcsPool<ReferenceComponent<IViewModel>> _viewModelPool;
-        private collector collector1;
-        private collector collecto2;
-        private EcsWorld _world;
 
-        public override void PreInit(EcsSystems systems)
+    public abstract class AbstractEcsPresenter<TPresenter, TData> : Presenter<TPresenter>, IEcsPresenter<TData>
+        where TPresenter : AbstractEcsPresenter<TPresenter, TData>, new()
+    {
+        protected int Entity { get; private set; }
+        protected EcsWorld EcsWorld { get; private set; }
+        protected EcsPool<ListComponent<IEcsPresenter<TData>>> _presentersPool;
+
+        public virtual void Initialize(EcsWorld world, int entity, EcsWorld viewModelWorld, int viewModelEntity)
         {
-            base.PreInit(systems);
+            EcsWorld = world;
+            Entity = entity;
+            _presentersPool = world.GetPool<ListComponent<IEcsPresenter<TData>>>();
+            _presentersPool.Ensure(entity).ComponentData.Add(this);
         }
 
-        public override void Run(EcsSystems systems)
+        public virtual void Update(TData data)
         {
-            base.Run(systems);
-            foreach (var entity in collector1)
-            {
-                foreach (var bindData in _bindListPool.Read(entity).ComponentData)
-                {
-                    bindData.Update(_logicComponentPool.Read(entity));
-                }
-            }
-
-            foreach (var entity in collecto2)
-            {
-                var command = _bindComponent.Read(entity);
-                var bindId = command.Key;
-                var entityId = command.ToEntity;
-
-                if (_viewModelPool.Has(entityId))
-                {
-                    var viewModel = _viewModelPool.Read(entityId).reference;
-
-                    var data = _bindDataPool.Read(_librarySystem.GetEntity(bindId)).reference;
-                    data = viewModel.GetBindData(data);
-                    data.Initialize(_world, entity);
-                    
-                    var actionPresenter = ActionPresenter<TBindData>.Create();
-                    actionPresenter.Pool = _bindListPool;
-                    actionPresenter.Entity = entity;
-                    actionPresenter.Data = data;
-                    
-                    viewModel.AddTo(actionPresenter);
-                }
-            }
         }
-    }
-
-    public class ActionPresenter<TData> : Presenter<ActionPresenter<TData>> where TData : IDisposable
-    {
-        public EcsPool<ListComponent<TData>> Pool;
-        public int Entity;
-        public TData Data;
 
         protected override void DisposeHandler()
         {
             base.DisposeHandler();
-            if (Pool.Has(Entity))
+            var data = _presentersPool.Read(Entity).ComponentData;
+            data.Remove(this);
+            if (data.Count == 0)
             {
-                ref var list =  ref Pool.Get(Entity);
-                list.ComponentData.Remove(Data);
-                if (list.ComponentData.Count == 0)
-                {
-                    Pool.Del(Entity);
-                }
+                _presentersPool.Del(Entity);
             }
+        }
+
+        public IEcsPresenter<TData> Clone()
+        {
+            return CloneHandler();
+        }
+
+        protected virtual TPresenter CloneHandler()
+        {
+            return AbstractEcsPresenter<TPresenter, TData>.Create();
         }
     }
 
-    public class SelfBindSystem<TLogicComponent, TBindData> : EcsSystemBase
-     where TLogicComponent : struct
-     where TBindData : struct, IEcsPresenter<TLogicComponent>, IBindData
+    public sealed class AggregatePresenter<TData> : AbstractEcsPresenter<AggregatePresenter<TData>, TData>
     {
-        private EcsPool<TLogicComponent> _logicComponentPool;
-        private EcsPool<TBindData> _bindDataPool;
-        private EcsPool<ReferenceComponent<IViewModel>> _viewModelPool;
-        private collector _collector;
-        private collector _collector2;
-        private EcsWorld _world;
+        private List<IEcsPresenter<TData>> _presenters = new List<IEcsPresenter<TData>>();
 
-        public override void PreInit(EcsSystems systems)
+        public override void Initialize(EcsWorld world, int entity, EcsWorld viewModelWorld, int viewModelEntity)
         {
-            _world = systems.GetWorld();
-            _logicComponentPool = _world.GetPool<TLogicComponent>();
-            _bindDataPool = _world.GetPool<TBindData>();
-            _collector = _world.Filter<TLogicComponent>().Inc<TBindData>()
-                .EndCollector(CollectorEvent.Added | CollectorEvent.Dirt);
-            _collector2 = _world.Filter<ReferenceComponent<IViewModel>>()
-                .Inc<TBindData>()
-                .Inc<TLogicComponent>()
-                .EndCollector(CollectorEvent.Added);
-            _viewModelPool = _world.GetPool<ReferenceComponent<IViewModel>>();
+            base.Initialize(world, entity, viewModelWorld, viewModelEntity);
+            foreach (var ecsPresenter in _presenters)
+            {
+                ecsPresenter.Initialize(world, entity, viewModelWorld, viewModelEntity);
+            }
         }
 
-        public override void Run(EcsSystems systems)
+        public override void Update(TData data)
         {
-            foreach (var entity in _collector2)
+            base.Update(data);
+            //ToDo think about it
+            foreach (var ecsPresenter in _presenters)
             {
+                ecsPresenter.Update(data);
             }
-            
-            foreach (var entity in _collector)
+        }
+
+        protected override void DisposeHandler()
+        {
+            base.DisposeHandler();
+            foreach (var ecsPresenter in _presenters)
             {
-                _bindDataPool.Read(entity).Update(_logicComponentPool.Read(entity));
+                ecsPresenter.Dispose();
             }
+            _presenters.Clear();
+        }
+
+        protected override AggregatePresenter<TData> CloneHandler()
+        {
+            var clone = base.CloneHandler();
+            foreach (var ecsPresenter in _presenters)
+            {
+                clone._presenters.Add(ecsPresenter.Clone());
+            }
+
+            return clone;
         }
     }
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using ApplicationScripts.CodeExtensions;
+using ApplicationScripts.Ecs.Utility;
+using ApplicationScripts.Logic.Config;
 using Game.CoreLogic;
 using Leopotam.EcsLite;
 using Presenting;
@@ -12,17 +14,17 @@ using ViewModel;
 namespace EcsViewModelPresenting
 {
     [Serializable]
-    public struct MoneyPresenter : IBindData
+    public class MoneyPresenter : AbstractEcsPresenter<MoneyPresenter, MoneyComponent>
     {
         [Bind("HardValue/Money")] 
         public IViewModelProperty<int> MoneyReactiveProperty;
 
-        public void Initialize(EcsWorld ecsWorld, int currentEntity)
+        public override void Initialize(EcsWorld ecsWorld, int currentEntity, EcsWorld viewModelWorld, int viewModelEntity)
         {
-
+            base.Initialize(ecsWorld, Entity, viewModelWorld, viewModelEntity);
         }
 
-        public void Update(MoneyComponent data)
+        public override void Update(MoneyComponent data)
         {
             MoneyReactiveProperty.SetValue(data.Value);
         }
@@ -33,9 +35,9 @@ namespace EcsViewModelPresenting
         }
     }
 
-    public interface IEcsPresenter<TData>
+    public interface IEcsPresenter<TData> : IDisposable, IClonable<IEcsPresenter<TData>>
     {
-        public void Initialize(EcsWorld world, int entity);
+        public void Initialize(EcsWorld world, int entity, EcsWorld viewModelWorld, int viewModelEntity);
 
         public void Update(TData data);
     }
