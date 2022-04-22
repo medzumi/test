@@ -24,6 +24,19 @@ namespace Game.CoreLogic
     {
         IEnumerable<int> GetLinks();
     }
+
+    [Serializable]
+    public struct TradeComponent : ILinkableComponent
+    {
+        public int Player;
+        public int Trader;
+        
+        public IEnumerable<int> GetLinks()
+        {
+            yield return Player;
+            yield return Trader;
+        }
+    }
     
     [Serializable]
     public class MoneyPresenter : AbstractEcsPresenter<MoneyPresenter, MoneyComponent>
