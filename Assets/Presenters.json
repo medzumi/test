@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Key" : "Test1",
+    "JObject" : {
+      "LinkPresenter`1<TradeComponent>" : {
+        "_binders" : [
+          "Test2",
+          "Test3"
+        ]
+      }
+    }
+  },
+  {
+    "Key" : "Test2",
+    "JObject" : {
+      "MoneyPresenter" : {
+        "MoneyKey" : "PlayerMoney"
+      }
+    }
+  },
+  {
+    "Key" : "Test3",
+    "JObject" : {
+      "MoneyPresenter" : {
+        "MoneyKey" : "TraderMoney"
+      }
+    }
+  }
+]

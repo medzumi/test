@@ -92,7 +92,7 @@ namespace ApplicationScripts.Logic.Config
         }
     }
 
-    public interface IImportapleComponent
+    public interface IImportable
     {
         public string ComponentName { get; }
     }
@@ -143,7 +143,7 @@ namespace ApplicationScripts.Logic.Config
 
 
     public class ImportJConvertCommandSystem<TImportType> : IEcsRunSystem, IEcsPreInitSystem
-        where TImportType : struct, IImportapleComponent
+        where TImportType : struct, IImportable
     {
         private static TImportType _exampleImportType = new TImportType();
         private EcsPool<ReferenceComponent<JObject>> _jObjectPool;

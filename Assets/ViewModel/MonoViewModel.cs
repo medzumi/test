@@ -14,10 +14,12 @@ namespace ViewModel
     public class MonoViewModel : MonoBehaviour, IViewModel
     {
         [Serializable]
-        private struct CustomPair
+        private class CustomPair
         {
-            public string Key;
-            [SerializeReference][SerializeTypes(typeof(IViewModelData))] public IViewModelData Data;
+            public string Key = string.Empty;
+
+            [SerializeReference] [SerializeTypes(typeof(IViewModelData))]
+            public IViewModelData Data = null;
         }
 
         [SerializeField] private List<CustomPair> _customPairs = new List<CustomPair>();
@@ -26,8 +28,6 @@ namespace ViewModel
         private void Awake()
         {
             OnValidate();
-            _customPairs.Clear();
-            _customPairs = null;
         }
 
         #if UNITY_EDITOR
@@ -45,7 +45,8 @@ namespace ViewModel
         #endif
         public T GetViewModelData<T>(string key) where  T : IViewModelData
         {
-            return (T)GetViewModelDataHandler(key);
+            var data = GetViewModelDataHandler(key);
+            return (T)data;
         }
 
         public object GetViewModelData(string key)
@@ -67,9 +68,9 @@ namespace ViewModel
             }
             _disposables.Clear();
             
-            foreach (var keyValuePair in _viewModelDatas)
+            foreach (var keyValuePair in _customPairs)
             {
-                if (keyValuePair.Value is IViewModelProperty viewModelProperty)
+                if (keyValuePair.Data is IViewModelProperty viewModelProperty)
                 {
                     viewModelProperty.Reset();
                 }
@@ -90,7 +91,8 @@ namespace ViewModel
 
         private object GetViewModelDataHandler(string key)
         {
-            return _customPairs.FirstOrDefault(pair => string.Equals(key, pair.Key));
+            var pair = _customPairs.FirstOrDefault(pair => string.Equals(key, pair.Key));
+            return pair.Data;
         }
     }
 }

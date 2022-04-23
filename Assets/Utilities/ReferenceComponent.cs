@@ -2,7 +2,7 @@
 
 namespace ApplicationScripts.Ecs.Utility
 {
-    public struct ReferenceComponent<TReference> : IImportapleComponent where TReference : class
+    public struct ReferenceComponent<TReference> : IImportable where TReference : class
     {
         private static readonly string _componentName = $"ReferenceComponent<{typeof(TReference).Name}>"; 
         

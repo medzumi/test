@@ -1,6 +1,8 @@
-﻿namespace Utilities.GenericPatterns
+﻿using System;
+
+namespace Utilities.GenericPatterns
 {
-    public class Singletone<T> where T : new()
+    public class Singletone<T>
     {
         private static T _instance;
         
@@ -8,7 +10,26 @@
         {
             get
             {
-                return _instance ??= new T();
+                try
+                {
+                    return _instance ??= Activator.CreateInstance<T>();
+                }
+                catch (Exception e)
+                {
+                    #if UNITY
+                    UnityEngine.Debug.LogException(e);
+                    #endif
+                    return default;
+                }
+                
+            }
+            set
+            {
+                if (_instance is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+                _instance = value;
             }
         }
     }

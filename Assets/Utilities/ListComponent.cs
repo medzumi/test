@@ -7,7 +7,7 @@ using Leopotam.EcsLite;
 namespace ApplicationScripts.Ecs.Utility
 {
     [Serializable]
-    public struct ListComponent<T> : IImportapleComponent, IEcsAutoReset<ListComponent<T>>
+    public struct ListComponent<T> : IImportable, IEcsAutoReset<ListComponent<T>>
     {
         private static readonly string _componentName = $"ListComponent<{typeof(T).Name}>";
         
@@ -28,7 +28,7 @@ namespace ApplicationScripts.Ecs.Utility
     }
 
     [Serializable]
-    public struct ListComponent<T, TFlag> : IImportapleComponent, IEcsAutoReset<ListComponent<T, TFlag>>
+    public struct ListComponent<T, TFlag> : IImportable, IEcsAutoReset<ListComponent<T, TFlag>>
     {
         private static readonly string _componentName = $"ListComponent<{typeof(T).Name},{typeof(TFlag).Name}>";
         

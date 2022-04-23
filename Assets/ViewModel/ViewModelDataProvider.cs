@@ -14,7 +14,7 @@ namespace ViewModel
         
         public T GetData()
         {
-            return _cachedData ?? GetDataFromViewModel();
+            return _cachedData ??= GetDataFromViewModel();
         }
 
         private T GetDataFromViewModel()
