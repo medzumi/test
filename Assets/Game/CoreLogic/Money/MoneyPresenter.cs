@@ -10,10 +10,10 @@ namespace Game.CoreLogic
         
         public IViewModelProperty<int> MoneyReactiveProperty;
 
-        public override void Initialize(EcsPresenterData ecsPresenterData)
+        public override void Initialize(PresenterData presenterData)
         {
-            MoneyReactiveProperty = ecsPresenterData.ViewModel.GetViewModelData<IViewModelProperty<int>>(MoneyKey);
-            base.Initialize(ecsPresenterData);
+            MoneyReactiveProperty = presenterData.ViewModel.GetViewModelData<IViewModelProperty<int>>(MoneyKey);
+            base.Initialize(presenterData);
         }
 
         public override void Update(MoneyComponent data)

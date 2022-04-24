@@ -36,7 +36,7 @@ namespace Game
             _systems = new EcsSystems(new EcsWorld());
             _systems.Add(new EcsWorldDebugSystem())
                 .Add<ViewModelUpdateSystem<MoneyComponent>>()
-                .Add<ViewModelUpdateSystem<TradeComponent>>()
+                .Add<ViewModelUpdateSystem<InteractComponent>>()
                 .Add(_testSystem);
             _systems.Init();
         }
@@ -84,15 +84,15 @@ namespace Game
                 {
                     Value = -999999999
                 });
-            world.GetPool<TradeComponent>()
-                .Add(entity3, new TradeComponent()
+            world.GetPool<InteractComponent>()
+                .Add(entity3, new InteractComponent()
                 {
                     Player = entity1,
                     Trader = entity2
                 });
             _filter = world.Filter<MoneyComponent>().End();
             _moneyPool = world.GetPool<MoneyComponent>();
-            _monoPresenterResolver.Resolve("Test1").Initialize(new EcsPresenterData()
+            _monoPresenterResolver.Resolve("Test1").Initialize(new PresenterData()
             {
                 ModelEntity = entity3,
                 ModelWorld = world,

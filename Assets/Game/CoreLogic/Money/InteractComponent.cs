@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Game.CoreLogic
 {
     [Serializable]
-    public struct TradeComponent : ILinkableComponent
+    public struct InteractComponent : ILinkableComponent
     {
         public int Player;
         public int Trader;

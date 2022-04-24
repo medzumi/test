@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Utilities.GenericPatterns;
+using ViewModel;
 
 namespace Game.CoreLogic
 {
@@ -13,6 +14,7 @@ namespace Game.CoreLogic
         private class DeserializeObject
         {
             public string Key;
+            public string ViewModelPath;
             public JObject JObject;
         }
         
@@ -27,7 +29,7 @@ namespace Game.CoreLogic
         {
             _jObjects = JsonConvert.DeserializeObject<List<DeserializeObject>>(_textAsset.text);
             Add<MoneyPresenter>();
-            Add<LinkPresenter<TradeComponent>>();
+            Add<LinkPresenter<InteractComponent>>();
             Singletone<IPresenterResolver>.instance = this;
         }
 
@@ -44,16 +46,7 @@ namespace Game.CoreLogic
                 var jObject = _jObjects.FirstOrDefault(deserialize => string.Equals(deserialize.Key, key))?.JObject;
                 if (jObject != null)
                 {
-                    _buffer.Clear();
-                    foreach (var keyValuePair in jObject)
-                    {
-                        if (_converters.TryGetValue(keyValuePair.Key, out var converter))
-                        {
-                            _buffer.Add(converter.Convert<IEcsPresenter>(keyValuePair.Value));
-                        }
-                    }
-
-                    _ecsPresenters[key] = presenter = new AggregatePresenter(_buffer);
+                    _ecsPresenters[key] = presenter = Resolve(jObject);
                 }
                 else
                 {
@@ -61,7 +54,42 @@ namespace Game.CoreLogic
                 }
             }
 
-            return presenter;
+            return presenter.Clone();
+        }
+
+        protected IEcsPresenter Resolve(JObject jObject)
+        {
+            _buffer.Clear();
+            foreach (var keyValuePair in jObject)
+            {
+                if (_converters.TryGetValue(keyValuePair.Key, out var converter))
+                {
+                    _buffer.Add(converter.Convert<IEcsPresenter>(keyValuePair.Value));
+                }
+            }
+
+            return new AggregatePresenter(_buffer);
+        }
+
+        private DeserializeObject GetDeserializeObject(string key)
+        {
+            return _jObjects.FirstOrDefault(deserialize => string.Equals(deserialize.Key, key));
+        }
+
+        public void BindPresenter(RequestData requestData)
+        {
+            var deserializeObject = GetDeserializeObject(requestData.Key);
+            var viewModel = Resources.Load<MonoViewModel>(deserializeObject.ViewModelPath);
+            if (!_ecsPresenters.TryGetValue(requestData.Key, out var presenter))
+            {
+                presenter = _ecsPresenters[requestData.Key] = Resolve(deserializeObject.JObject);
+            }
+            presenter.Clone().Initialize(new PresenterData()
+            {
+                ModelEntity = requestData.ModelEntity,
+                ModelWorld = requestData.ModelWorld,
+                ViewModel = viewModel
+            });
         }
     }
 }
