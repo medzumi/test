@@ -44,8 +44,10 @@ namespace ApplicationScripts.Logic.Config
             foreach (var entity in _importableEntities)
             {
                 var newEntity = world.NewEntity();
-                ref var a = ref _importableEntityPool.Add(newEntity);
-                a.reference = entity;
+                _importableEntityPool.Add(newEntity, new ReferenceComponent<JObject>()
+                {
+                    reference = entity
+                });
             }
             base.PreInit(systems);
             foreach (var entity in _filter3)
@@ -59,12 +61,12 @@ namespace ApplicationScripts.Logic.Config
             foreach (var entity in _filter)
             {
                 _subImportBuffer.Clear();
-                _subImportBuffer.AddRange(_importCommandPool.Read(entity).From);
+                _subImportBuffer.AddRange(_importCommandPool.Get(entity).From);
                 for(int i = 0; i < _subImportBuffer.Count; i++)
                 {
                     var importableEntityIndex = _subImportBuffer[i];
                     var importableEntity = _librarySystem.GetEntity(importableEntityIndex);
-                    _importListPool.Ensure(importableEntity)
+                    _importListPool.EnsureGet(importableEntity)
                         .Ids
                         .Add(entity);
                 }
@@ -92,11 +94,6 @@ namespace ApplicationScripts.Logic.Config
         }
     }
 
-    public interface IImportable
-    {
-        public string ComponentName { get; }
-    }
-
     public class ImportImportableEntity : IEcsRunSystem, IEcsPreInitSystem
     {
         private static ImportableComponent _exampleImportType = new ImportableComponent();
@@ -114,7 +111,7 @@ namespace ApplicationScripts.Logic.Config
         {
             foreach (var entity in _filter)
             {
-                var reference = _jObjectPool.Read(entity).reference;
+                var reference = _jObjectPool.Get(entity).reference;
                 if (reference.ContainsKey(_exampleImportType.ComponentName))
                 {
                     _importTypePool.Add(entity,
@@ -143,7 +140,7 @@ namespace ApplicationScripts.Logic.Config
 
 
     public class ImportJConvertCommandSystem<TImportType> : IEcsRunSystem, IEcsPreInitSystem
-        where TImportType : struct, IImportable
+        where TImportType : struct
     {
         private static TImportType _exampleImportType = new TImportType();
         private EcsPool<ReferenceComponent<JObject>> _jObjectPool;
@@ -157,9 +154,9 @@ namespace ApplicationScripts.Logic.Config
             Import();
             foreach (var entity in _filter2)
             {
-                foreach (var toEntity in _internalImportCommand.Read(entity).Ids)
+                foreach (var toEntity in _internalImportCommand.Get(entity).Ids)
                 {
-                    _importTypePool.Ensure(toEntity) = _importTypePool.Read(entity);
+                    _importTypePool.EnsureSet(toEntity, _importTypePool.Get(entity));
                 }
             }
         }
@@ -168,12 +165,12 @@ namespace ApplicationScripts.Logic.Config
         {
             foreach (var entity in _filter)
             {
-                var reference = _jObjectPool.Read(entity).reference;
-                if (reference.ContainsKey(_exampleImportType.ComponentName))
+                var reference = _jObjectPool.Get(entity).reference;
+               /* if (reference.ContainsKey(_exampleImportType.ComponentName))
                 {
                     _importTypePool.Add(entity,
                         reference.GetValue(_exampleImportType.ComponentName)!.ToObject<TImportType>());
-                }
+                }*/
             }
         }
 

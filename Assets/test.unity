@@ -869,13 +869,13 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: IntViewModelProperty, ns: ViewModel.UniTaskData, asm: Assembly-CSharp}
+      type: {class: IntViewModelProperty, ns: ViewModel.UniTaskData, asm: ecslite.unityPresenting}
       data:
-        _defaultValue: 4
+        _defaultValue: 0
     00000001:
-      type: {class: IntViewModelProperty, ns: ViewModel.UniTaskData, asm: Assembly-CSharp}
+      type: {class: IntViewModelProperty, ns: ViewModel.UniTaskData, asm: ecslite.unityPresenting}
       data:
-        _defaultValue: 30
+        _defaultValue: 0
 --- !u!1 &1951973623
 GameObject:
   m_ObjectHideFlags: 0

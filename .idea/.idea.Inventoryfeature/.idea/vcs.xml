@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/Utilities" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/Utilities.Unity" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/ecslite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/ecslite-unityeditor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/ecslite.unityPresenting" vcs="Git" />
   </component>
 </project>

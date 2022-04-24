@@ -6,7 +6,6 @@ using ApplicationScripts.Logic.Config;
 using ApplicationScripts.Logic.Features.Indexing;
 using EcsViewModelPresenting;
 using Game.CoreLogic;
-using Injecting;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;
 using Newtonsoft.Json;
@@ -34,7 +33,6 @@ namespace Game
         
         private void RegisterContainer()
         {
-            var container = Singletone<Container>.instance;
             _systems = new EcsSystems(new EcsWorld());
             _systems.Add(new EcsWorldDebugSystem())
                 .Add<ViewModelUpdateSystem<MoneyComponent>>()
@@ -77,9 +75,15 @@ namespace Game
             var entity2 = world.NewEntity();
             var entity3 = world.NewEntity();
             world.GetPool<MoneyComponent>()
-                .Add(entity1).Value = -999;
+                .Add(entity1, new MoneyComponent()
+                {
+                    Value = -999
+                });
             world.GetPool<MoneyComponent>()
-                .Add(entity2).Value = -999999999;
+                .Add(entity2, new MoneyComponent()
+                {
+                    Value = -999999999
+                });
             world.GetPool<TradeComponent>()
                 .Add(entity3, new TradeComponent()
                 {
@@ -101,7 +105,9 @@ namespace Game
             base.Run(systems);
             foreach (var entity in _filter)
             {
-                _moneyPool.Set(entity).Value += 1;
+                var component = _moneyPool.Get(entity);
+                component.Value += 1;
+                _moneyPool.Set(entity, component);
             }
         }
     }

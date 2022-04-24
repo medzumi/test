@@ -55,13 +55,13 @@ namespace Inventory
         {
             foreach (var addEntity in _addFilter)
             {
-                ref var addCommand = ref _addItemCommands.Set(addEntity);
-                var inventory = _inventories.Read(addCommand.InventoryIndex);
+                var addCommand = _addItemCommands.Get(addEntity);
+                var inventory = _inventories.Get(addCommand.InventoryIndex);
                 foreach (var findInventoryData in GetInventoryData(inventory, addCommand.ItemIndex, _buffer))
                 {
                     if (_stackablePool.Has(findInventoryData.ItemIndex))
                     {
-                        ref var stackable = ref _stackablePool.Set(findInventoryData.ItemIndex);
+                        var stackable = _stackablePool.Get(findInventoryData.ItemIndex);
                         var space = stackable.MaxCount - stackable.Count;
                         if (space > 0)
                         {
@@ -74,7 +74,9 @@ namespace Inventory
                             {
                                 stackable.Count = stackable.MaxCount;
                                 addCommand.Count -= space;
+                                _addItemCommands.Set(addEntity, addCommand);
                             }
+                            _stackablePool.Set(findInventoryData.ItemIndex, stackable);
                         }
                     }   
                 }
@@ -90,18 +92,19 @@ namespace Inventory
         {
             foreach (var removeEntity in _removeFilter)
             {
-                ref var removeCommand = ref _removeItemCommands.Set(removeEntity);
-                var inventory = _inventories.Set(removeCommand.InventoryIndex);
+                var removeCommand = _removeItemCommands.Get(removeEntity);
+                var inventory = _inventories.Get(removeCommand.InventoryIndex);
                 if (_stackablePool.Has(removeCommand.ItemIndex))
                 {
                     foreach (var findInventoryData in GetInventoryData(inventory, removeCommand.ItemIndex, _buffer))
                     {
                         if (_stackablePool.Has(findInventoryData.ItemIndex))
                         {
-                            ref var stackable = ref _stackablePool.Set(findInventoryData.ItemIndex);
+                            var stackable = _stackablePool.Get(findInventoryData.ItemIndex);
                             if (stackable.Count > removeCommand.Count)
                             {
                                 stackable.Count -= removeCommand.Count;
+                                _stackablePool.Set(findInventoryData.ItemIndex, stackable);
                                 _removeItemCommands.Del(removeEntity);
                             }
                             else
@@ -109,6 +112,7 @@ namespace Inventory
                                 removeCommand.Count -= stackable.Count;
                                 _stackablePool.Del(findInventoryData.ItemIndex);
                                 inventory.Data[findInventoryData.SlotIndex] = -1;
+                                _removeItemCommands.Set(removeEntity, removeCommand);
                             }
                         }
                     }
@@ -176,7 +180,7 @@ namespace Inventory
             {
                 if (index > -1 && _inventoryIndexPool.Has(index))
                 {
-                    var inventoryIndexComponent = _inventoryIndexPool.Read(index);
+                    var inventoryIndexComponent = _inventoryIndexPool.Get(index);
                     if (inventoryIndexComponent.Index == inventoryIndex)
                     {
                         buffer.Add(new FindInventoryData()

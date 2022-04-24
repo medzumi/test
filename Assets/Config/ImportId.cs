@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace ApplicationScripts.Logic.Config
 {
-    public struct ImportableComponent : IIndexComponent<string>, IImportable
+    public struct ImportableComponent : IIndexComponent<string>
     {
         public string Index;
 
