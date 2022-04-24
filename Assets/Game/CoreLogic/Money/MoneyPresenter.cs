@@ -20,5 +20,12 @@ namespace Game.CoreLogic
         {
             MoneyReactiveProperty.SetValue(data.Value);
         }
+
+        protected override MoneyPresenter CloneHandler()
+        {
+            var clone = base.CloneHandler();
+            clone.MoneyKey = MoneyKey;
+            return clone;
+        }
     }
 }

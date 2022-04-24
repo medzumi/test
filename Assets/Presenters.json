@@ -2,7 +2,7 @@
   {
     "Key" : "Test1",
     "JObject" : {
-      "LinkPresenter`1<TradeComponent>" : {
+      "LinkPresenter`1<InteractComponent>" : {
         "_binders" : [
           "Test2",
           "Test3"
