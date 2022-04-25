@@ -92,7 +92,7 @@ namespace Game
                 });
             _filter = world.Filter<MoneyComponent>().End();
             _moneyPool = world.GetPool<MoneyComponent>();
-            _monoPresenterResolver.Resolve("Test1").Initialize(new PresenterData()
+            _monoPresenterResolver.Resolve("Test1").Initialize(new EcsPresenterData()
             {
                 ModelEntity = entity3,
                 ModelWorld = world,

@@ -4,10 +4,23 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Utilities.GenericPatterns;
+using Utilities.Pooling;
 using ViewModel;
 
 namespace Game.CoreLogic
 {
+    public class ViewModelPoolPresenter : PoolableObject<ViewModelPoolPresenter>
+    {
+        public Pool<IViewModel> ViewModelPool;
+        public IViewModel ViewModel;
+
+        protected override void DisposeHandler()
+        {
+            base.DisposeHandler();
+            ViewModelPool.Release(ViewModel);
+        }
+    }
+
     [DefaultExecutionOrder(-2)]
     public class MonoPresenterResolver : MonoBehaviour, IPresenterResolver
     {
@@ -24,6 +37,9 @@ namespace Game.CoreLogic
         private readonly Dictionary<string, IConverter> _converters = new Dictionary<string, IConverter>();
         private List<DeserializeObject> _jObjects;
         private List<IEcsPresenter> _buffer = new List<IEcsPresenter>();
+
+        private readonly Dictionary<string, Pool<IViewModel>> _viewModelPools =
+            new Dictionary<string, Pool<IViewModel>>();
 
         private void Awake()
         {
@@ -57,6 +73,17 @@ namespace Game.CoreLogic
             return presenter.Clone();
         }
 
+        public IEcsPresenter Resolve(string key, out IViewModel viewModel)
+        {
+            var deserializeObject = GetDeserializeObject(key);
+            var vmP = ViewModelPoolPresenter.Create();
+            var pool = vmP.ViewModelPool = GetPool(deserializeObject.ViewModelPath);
+            var presenter = Resolve(deserializeObject.JObject);
+            viewModel = vmP.ViewModel = pool.Get();
+            viewModel.AddTo(vmP);
+            return presenter;
+        }
+
         protected IEcsPresenter Resolve(JObject jObject)
         {
             _buffer.Clear();
@@ -76,20 +103,15 @@ namespace Game.CoreLogic
             return _jObjects.FirstOrDefault(deserialize => string.Equals(deserialize.Key, key));
         }
 
-        public void BindPresenter(RequestData requestData)
+        private Pool<IViewModel> GetPool(string key)
         {
-            var deserializeObject = GetDeserializeObject(requestData.Key);
-            var viewModel = Resources.Load<MonoViewModel>(deserializeObject.ViewModelPath);
-            if (!_ecsPresenters.TryGetValue(requestData.Key, out var presenter))
+            if (!_viewModelPools.TryGetValue(key, out var pool))
             {
-                presenter = _ecsPresenters[requestData.Key] = Resolve(deserializeObject.JObject);
+                var viewModel = Resources.Load<GameObject>(key).GetComponent<MonoViewModel>();
+                _viewModelPools[key] = pool = new Pool<IViewModel>(0, () => Instantiate(viewModel));
             }
-            presenter.Clone().Initialize(new PresenterData()
-            {
-                ModelEntity = requestData.ModelEntity,
-                ModelWorld = requestData.ModelWorld,
-                ViewModel = viewModel
-            });
+
+            return pool;
         }
     }
 }
