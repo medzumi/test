@@ -46,7 +46,7 @@ namespace Game.CoreLogic
             _jObjects = JsonConvert.DeserializeObject<List<DeserializeObject>>(_textAsset.text);
             Add<MoneyPresenter>();
             Add<LinkPresenter<InteractComponent>>();
-            Singletone<IPresenterResolver>.instance = this;
+            //Singletone<IPresenterResolver>.instance = this;
         }
 
         private Dictionary<string, IConverter> Add<T>()

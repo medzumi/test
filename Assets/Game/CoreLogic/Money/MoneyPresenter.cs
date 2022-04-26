@@ -16,7 +16,7 @@ namespace Game.CoreLogic
             base.Initialize(presenterData);
         }
 
-        public override void Update(MoneyComponent data)
+        protected override void Update(MoneyComponent data)
         {
             MoneyReactiveProperty.SetValue(data.Value);
         }
