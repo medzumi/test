@@ -10,6 +10,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Unity;
 using UnityEngine;
 using Utilities;
 using Utilities.GenericPatterns;
@@ -62,8 +63,7 @@ namespace Game
     public class TestSystem : EcsSystemBase
     {
         [SerializeField] private MonoViewModel _rootViewModel;
-        [SerializeField] private MonoPresenterResolver _monoPresenterResolver;
-        
+
         private EcsFilter _filter;
         private EcsPool<MoneyComponent> _moneyPool;
 
@@ -92,7 +92,7 @@ namespace Game
                 });
             _filter = world.Filter<MoneyComponent>().End();
             _moneyPool = world.GetPool<MoneyComponent>();
-            _monoPresenterResolver.Resolve("Test1").Initialize(new EcsPresenterData()
+            PresenterSettings.instance.PresenterResolver.Resolve("Test1").Initialize(new EcsPresenterData()
             {
                 ModelEntity = entity3,
                 ModelWorld = world,

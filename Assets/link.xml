@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<linker xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Game.TestRef" preserve="all" />
+    <type fullname="Game.TestRef" preserve="all" />
+    <type fullname="Game.TestRef" preserve="all" />
+    <type fullname="Game.TestRef" preserve="all" />
+  </assembly>
+  <assembly fullname="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <type fullname="System.Collections.Generic.List`1[[Game.TestNewA`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]" preserve="all" />
+    <type fullname="System.Collections.Generic.List`1[[Game.TestNewA`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]" preserve="all" />
+  </assembly>
+</linker>

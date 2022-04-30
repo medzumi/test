@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e29920fc0ec440ea9aa45a741d7cc83, type: 3}
   m_Name: PresenterSettings
   m_EditorClassIdentifier: 
+  _abstractResolverProvider: {fileID: 11400000, guid: b557cd4531da05b47b82dc69c032175e, type: 2}

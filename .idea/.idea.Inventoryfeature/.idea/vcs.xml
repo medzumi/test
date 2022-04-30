@@ -6,6 +6,10 @@
     <mapping directory="$PROJECT_DIR$/Assets/Utilities.Unity" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Assets/ecslite" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Assets/ecslite-unityeditor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/Utilities" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/Utilities.Unity" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/ecslite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/ecslite.extensions" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Packages/ecslite.unityPresenting" vcs="Git" />
   </component>
 </project>

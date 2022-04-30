@@ -1,34 +1,54 @@
 {
   "dependencies": {
-    "com.leopotam.ecslite": {
-      "version": "file:D:/Work/Projects/ecslite",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
-    "com.leopotam.ecslite.extendedsystems": {
-      "version": "https://github.com/Leopotam/ecslite-extendedsystems.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "a82da713e82fee6f261378626cfc5701036e39d9"
-    },
-    "com.leopotam.ecslite.unity.ugui": {
-      "version": "https://github.com/Leopotam/ecslite-unity-ugui.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "02eae976a3124410b3319e883c880f836c8f4635"
-    },
     "com.leopotam.ecslite.unityeditor": {
       "version": "https://github.com/Leopotam/ecslite-unityeditor.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f29646951fb434b27c1edfad7dae206a9332875e"
+      "hash": "31b0df802def4f8995b7c9421551e6eb3fdab99e"
+    },
+    "com.medzumi.ecslite": {
+      "version": "file:ecslite",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.medzumi.ecslite.extensions": {
+      "version": "file:ecslite.extensions",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.medzumi.utilities": "1.0.0",
+        "com.medzumi.ecslite": "3000.0.0"
+      }
+    },
+    "com.medzumi.ecslite.unitypresenting": {
+      "version": "file:ecslite.unityPresenting",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.medzumi.utilities": "1.0.0",
+        "com.medzumi.utilities.unity": "1.0.0",
+        "com.medzumi.ecslite": "3000.0.0",
+        "com.medzumi.ecslite.extensions": "1.0.0"
+      }
+    },
+    "com.medzumi.utilities": {
+      "version": "file:Utilities",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.medzumi.utilities.unity": {
+      "version": "file:Utilities.Unity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.medzumi.utilities": "1.0.0"
+      }
     },
     "com.unity.collab-proxy": {
-      "version": "1.15.12",
+      "version": "1.15.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -44,11 +64,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "2.0.7",
+      "version": "3.0.13",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.1"
+        "com.unity.ext.nunit": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },
@@ -62,7 +82,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.4",
+      "version": "1.2.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mobile.android-logcat": {
+      "version": "1.2.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -85,7 +112,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.29",
+      "version": "1.1.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -105,7 +132,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.4.8",
+      "version": "1.6.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -124,12 +151,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "leoext": {
-      "version": "file:D:/Work/Projects/UnityEditorUtilities",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
