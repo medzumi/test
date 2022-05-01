@@ -1,12 +1,11 @@
-﻿using System;
 using Packages.ecslite.extensions.CommonComponents;
 
 namespace Game.CoreLogic
 {
-    [Serializable]
-    public struct NameComponent : ISingleValueCompnent<string>
+    public struct CategoryComponent : ISingleValueCompnent<string>
     {
         public string Value;
+        
         public string GetValue()
         {
             return Value;
