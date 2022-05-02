@@ -13,16 +13,11 @@ MonoBehaviour:
   m_Name: New Default Presenter Config
   m_EditorClassIdentifier: 
   _presenter:
-  - _key: 
-    _viewModelKey: 
-    _presenters:
-    - rid: 7877725513385771008
+  - _key: hey
+    _presenter:
+      rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 7877725513385771008
-      type: {class: OpenPresenter, ns: Presenter, asm: ecslite.unityPresenting}
-      data:
-        OpenCommandKey: 
-        PresenterKey: 
-        ViewModelKey: Canvas
+    - rid: -2
+      type: {class: , ns: , asm: }

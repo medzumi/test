@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using ApplicationScripts.Ecs;
 using ApplicationScripts.Logic.Features.Indexing;
 using EcsViewModelPresenting;
 using Game.CoreLogic;
 using Leopotam.EcsLite;
+using Unity;
 #if UNITY_EDITOR
 using Leopotam.EcsLite.UnityEditor;
 #endif
 using UnityEngine;
+using ViewModel;
 
 
 namespace Game
@@ -42,13 +45,158 @@ namespace Game
     }
 
     [Serializable]
-    public struct TestIndexComponent : IIndexComponent<string>
+    public class TestSystem : EcsSystemBase
     {
-        public string Key;
+        [SerializeField] private MonoViewModel _monoViewModel;
+
+        [PresenterKeyProperty] [SerializeField]
+        private string _presenterKey;
         
-        public string GetIndex()
+        public override void Init(EcsSystems systems)
         {
-            return Key;
+            base.Init(systems);
+            var world = systems.GetWorld();
+            var hardValuePricePool = world.GetPool<HardValuePriceComponent>();
+            var nameComponent = world.GetPool<NameComponent>();
+            var purchaseCounterComponent = world.GetPool<PurchaseCounterComponent>();
+            var timerComponent = world.GetPool<TimerComponent>();
+            var unifiedViewKeyComponent = world.GetPool<UnifiedViewKeyComponent>();
+            var containerComponentPool = world.GetPool<ContainerComponent>();
+            var categoryComponent = world.GetPool<CategoryComponent>();
+
+            var entity = world.NewEntity();
+            var modelEntity = entity;
+            var containerComponent = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            containerComponentPool.Add(entity, containerComponent);
+
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            var categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_1"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_2"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            PresenterSettings.instance.PresenterResolver.Resolve(_presenterKey)
+                .Initialize(new EcsPresenterData()
+                {
+                    ModelEntity = modelEntity,
+                    ModelWorld = world,
+                    ViewModel = _monoViewModel
+                });
         }
     }
 }

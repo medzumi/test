@@ -4,7 +4,7 @@ using UnityEngine.Purchasing;
 namespace Game.CoreLogic
 {
     [Serializable]
-    public class HardValuePriceComponent : IPriceComponent
+    public struct HardValuePriceComponent : IPriceComponent
     {
         public string CurrencyName;
         public decimal Price;
