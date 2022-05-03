@@ -15,3 +15,6 @@ MonoBehaviour:
   _defaultPresenterConfig: {fileID: 11400000, guid: 80620dd96634728498bfb2d86097b41a, type: 2}
   _monoViewModels:
   - {fileID: 71884897000045442, guid: bde57a38a7ab4dd4dbe7fd9de18a231e, type: 3}
+  - {fileID: 8570067196464463733, guid: f569d4d0bbb7de14b9a3acfdc4c970c7, type: 3}
+  - {fileID: 3780798142167038331, guid: 575ac5c9e4826bf4589fec7674fa960c, type: 3}
+  - {fileID: -5969620247908351477, guid: 1c297bde68d99484daf8a5b68a868917, type: 3}

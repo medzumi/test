@@ -152,7 +152,6 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 939496592}
   m_Father: {fileID: 1934989779}
@@ -242,7 +241,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1070322396}
   m_RootOrder: 0
@@ -318,7 +316,6 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420926574}
   m_RootOrder: 0
@@ -459,7 +456,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 566372148}
   - {fileID: 1267072034}
@@ -488,18 +484,27 @@ MonoBehaviour:
   _customPairs:
   - Key: CategoryList
     Data:
-      rid: 7877725513385771009
+      id: 0
   - Key: CategoryTogglelList
     Data:
-      rid: 7877725513385771011
+      id: 1
+  - Key: Category/SelectInList
+    Data:
+      id: 2
+  - Key: Category/SelectInToggleList
+    Data:
+      id: 3
   _viewModelPlaces: []
   references:
-    version: 2
-    RefIds:
-    - rid: 7877725513385771009
+    version: 1
+    00000000:
       type: {class: CollectionData, ns: ViewModel, asm: ecslite.unityPresenting}
-    - rid: 7877725513385771011
+    00000001:
       type: {class: CollectionData, ns: ViewModel, asm: ecslite.unityPresenting}
+    00000002:
+      type: {class: StringViewModelEvent, ns: ViewModel.UniTaskData, asm: ecslite.unityPresenting}
+    00000003:
+      type: {class: StringViewModelEvent, ns: ViewModel.UniTaskData, asm: ecslite.unityPresenting}
 --- !u!1 &1151314543
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +567,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -595,7 +599,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1070322396}
   m_RootOrder: 1
@@ -724,7 +727,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -741,7 +743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d40620c8dd24d9b90222b3b82edf408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textAsset: {fileID: 4900000, guid: 9b9a05aead9c4c40b80e3ab2acc92f23, type: 3}
+  _testSystem:
+    _monoViewModel: {fileID: 1070322397}
+    _presenterKey: ShopPresenter
 --- !u!114 &1468313980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90e2460a53d42f1a0a9dd4308ac431c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textAsset: {fileID: 4900000, guid: 5ea5da177e3c513469e62ab4d08314e4, type: 3}
 --- !u!1 &1486694077
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +847,6 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -876,7 +878,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1070322396}
   m_RootOrder: 3
@@ -940,7 +941,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 420926574}
   m_Father: {fileID: 2107675952}
@@ -1015,7 +1015,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1934989779}
   m_Father: {fileID: 1070322396}

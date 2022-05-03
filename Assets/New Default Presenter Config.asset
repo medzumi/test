@@ -13,11 +13,40 @@ MonoBehaviour:
   m_Name: New Default Presenter Config
   m_EditorClassIdentifier: 
   _presenter:
-  - _key: hey
+  - _key: ShopPresenter
     _presenter:
-      rid: -2
+      id: 0
+  - _key: CategroyContainerPresenter
+    _presenter:
+      id: 1
+  - _key: CategroyPresenter
+    _presenter:
+      id: 2
   references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    version: 1
+    00000000:
+      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        FirstContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: CategroyContainerPresenter
+          RootToListElementPresenterKey: Null
+          ListElementViewModelKey: Category
+          ListPropertyKey: CategorylList
+        SecondContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: CategroyPresenter
+          RootToListElementPresenterKey: Null
+          ListElementViewModelKey: Toggle
+          ListPropertyKey: CategoryTogglelList
+        FirstContainerSelectEvent: Category/SelectInList
+        SecondContainerSelectEvent: Category/SelectInToggleList
+    00000001:
+      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
+      data:
+        _presenters: []
+    00000002:
+      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
+      data:
+        _presenters: []

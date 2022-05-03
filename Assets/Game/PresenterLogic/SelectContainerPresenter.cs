@@ -43,6 +43,10 @@ namespace Game.View
             var clone = base.CloneHandler();
             clone.FirstContainerPresenter = (ContainerPresenter)FirstContainerPresenter.Clone();
             clone.SecondContainerPresenter = (ContainerPresenter)SecondContainerPresenter.Clone();
+            clone.FirstContainerPresenter.PresenterResolver = PresenterResolver;
+            clone.FirstContainerPresenter.ViewModelResolver = ViewModelResolver;
+            clone.SecondContainerPresenter.PresenterResolver = PresenterResolver;
+            clone.SecondContainerPresenter.ViewModelResolver = ViewModelResolver;
             clone.FirstContainerSelectEvent = FirstContainerSelectEvent;
             clone.SecondContainerSelectEvent = SecondContainerSelectEvent;
 

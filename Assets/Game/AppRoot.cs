@@ -4,6 +4,7 @@ using ApplicationScripts.Ecs;
 using ApplicationScripts.Logic.Features.Indexing;
 using EcsViewModelPresenting;
 using Game.CoreLogic;
+using Game.PresenterLogic;
 using Leopotam.EcsLite;
 using Unity;
 #if UNITY_EDITOR
@@ -18,7 +19,7 @@ namespace Game
     [DefaultExecutionOrder(-1)]
     public class AppRoot : MonoBehaviour
     {
-        [SerializeField] private TextAsset _textAsset;
+        public TestSystem _testSystem;
         private EcsSystems _systems;
         
         private void Awake()
@@ -34,7 +35,15 @@ namespace Game
 #endif
             _systems
                 .Add<ViewModelUpdateSystem<MoneyComponent>>()
-                .Add<ViewModelUpdateSystem<InteractComponent>>();
+                .Add<ViewModelUpdateSystem<InteractComponent>>()
+                .Add<ViewModelUpdateSystem<ContainerComponent>>()
+                .Add<ViewModelUpdateSystem<NameComponent>>()
+                .Add<ViewModelUpdateSystem<PurchaseCounterComponent>>()
+                .Add<ViewModelUpdateSystem<UnifiedViewKeyComponent>>()
+                .Add<ViewModelUpdateSystem<CategoryComponent>>()
+                .Add<ViewModelUpdateSystem<HardValuePriceComponent>>()
+                .Add<ViewModelUpdateSystem<TimerComponent>>();
+            _systems.Add(_testSystem);
             _systems.Init();
         }
 
