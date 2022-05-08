@@ -58,7 +58,7 @@ namespace Game
     {
         [SerializeField] private MonoViewModel _monoViewModel;
 
-        [PresenterKeyProperty] [SerializeField]
+        [PresenterKeyProperty(typeof(EcsPresenterData), typeof(IViewModel))] [SerializeField]
         private string _presenterKey;
         
         public override void Init(EcsSystems systems)
@@ -199,13 +199,12 @@ namespace Game
                 Price = 100
             });
             
-            PresenterSettings.instance.PresenterResolver.Resolve(_presenterKey)
+            PresenterSettings.instance.PresenterResolver.Resolve<EcsPresenterData, IViewModel>(_presenterKey)
                 .Initialize(new EcsPresenterData()
                 {
                     ModelEntity = modelEntity,
                     ModelWorld = world,
-                    ViewModel = _monoViewModel
-                });
+                }, _monoViewModel);
         }
     }
 }

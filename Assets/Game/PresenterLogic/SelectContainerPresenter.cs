@@ -7,25 +7,24 @@ using ViewModel;
 namespace Game.View
 {
     [Serializable]
-    public class SelectContainerPresenter : AbstractEcsPresenter<SelectContainerPresenter, ContainerComponent>
+    public class SelectContainerPresenter : AbstractEcsPresenter<SelectContainerPresenter, IViewModel, ContainerComponent>
     {
         public ContainerPresenter FirstContainerPresenter = ContainerPresenter.Create();
         public ContainerPresenter SecondContainerPresenter = ContainerPresenter.Create();
 
-        [ViewModelDataKeyProperty] public string FirstContainerSelectEvent;
-        [ViewModelDataKeyProperty] public string SecondContainerSelectEvent;
+        [ViewDataKeyProperty] public string FirstContainerSelectEvent;
+        [ViewDataKeyProperty] public string SecondContainerSelectEvent;
 
         private bool _isRaisedEvent = false;
         
         private IViewModelEvent<string> _firstContainerEvent;
         private IViewModelEvent<string> _secondContainerEvent;
 
-        public override void Initialize(EcsPresenterData ecsPresenterData)
+        public override void Initialize(EcsPresenterData ecsPresenterData, IViewModel viewModel)
         {
-            base.Initialize(ecsPresenterData);
-            FirstContainerPresenter.Initialize(ecsPresenterData);
-            SecondContainerPresenter.Initialize(ecsPresenterData);
-            var viewModel = ecsPresenterData.ViewModel;
+            base.Initialize(ecsPresenterData, viewModel);
+            FirstContainerPresenter.Initialize(ecsPresenterData, viewModel);
+            SecondContainerPresenter.Initialize(ecsPresenterData, viewModel);
             _firstContainerEvent = viewModel.GetViewModelData<IViewModelEvent<string>>(FirstContainerSelectEvent);
             _secondContainerEvent = viewModel.GetViewModelData<IViewModelEvent<string>>(SecondContainerSelectEvent);
 
@@ -44,9 +43,9 @@ namespace Game.View
             clone.FirstContainerPresenter = (ContainerPresenter)FirstContainerPresenter.Clone();
             clone.SecondContainerPresenter = (ContainerPresenter)SecondContainerPresenter.Clone();
             clone.FirstContainerPresenter.PresenterResolver = PresenterResolver;
-            clone.FirstContainerPresenter.ViewModelResolver = ViewModelResolver;
+            clone.FirstContainerPresenter.ViewResolver = ViewResolver;
             clone.SecondContainerPresenter.PresenterResolver = PresenterResolver;
-            clone.SecondContainerPresenter.ViewModelResolver = ViewModelResolver;
+            clone.SecondContainerPresenter.ViewResolver = ViewResolver;
             clone.FirstContainerSelectEvent = FirstContainerSelectEvent;
             clone.SecondContainerSelectEvent = SecondContainerSelectEvent;
 

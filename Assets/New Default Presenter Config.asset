@@ -18,35 +18,11 @@ MonoBehaviour:
       id: 0
   - _key: CategroyContainerPresenter
     _presenter:
-      id: 1
+      id: 0
   - _key: CategroyPresenter
     _presenter:
-      id: 2
+      id: 0
   references:
     version: 1
     00000000:
-      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
-      data:
-        HasComponentKey: 
-        FirstContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: CategroyContainerPresenter
-          RootToListElementPresenterKey: Null
-          ListElementViewModelKey: Category
-          ListPropertyKey: CategorylList
-        SecondContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: CategroyPresenter
-          RootToListElementPresenterKey: Null
-          ListElementViewModelKey: Toggle
-          ListPropertyKey: CategoryTogglelList
-        FirstContainerSelectEvent: Category/SelectInList
-        SecondContainerSelectEvent: Category/SelectInToggleList
-    00000001:
-      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
-      data:
-        _presenters: []
-    00000002:
-      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
-      data:
-        _presenters: []
+      type: {class: , ns: , asm: }

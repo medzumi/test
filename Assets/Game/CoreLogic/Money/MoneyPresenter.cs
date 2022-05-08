@@ -4,16 +4,16 @@ using ViewModel;
 namespace Game.CoreLogic
 {
     [Serializable]
-    public class MoneyPresenter : AbstractEcsPresenter<MoneyPresenter, MoneyComponent>
+    public class MoneyPresenter : AbstractEcsPresenter<MoneyPresenter, IViewModel, MoneyComponent>
     {
         public string MoneyKey;
         
         public IViewModelProperty<int> MoneyReactiveProperty;
 
-        public override void Initialize(EcsPresenterData presenterData)
+        public override void Initialize(EcsPresenterData presenterData, IViewModel viewModel)
         {
-            MoneyReactiveProperty = presenterData.ViewModel.GetViewModelData<IViewModelProperty<int>>(MoneyKey);
-            base.Initialize(presenterData);
+            MoneyReactiveProperty = viewModel.GetViewModelData<IViewModelProperty<int>>(MoneyKey);
+            base.Initialize(presenterData, viewModel);
         }
 
         protected override void Update(MoneyComponent data)
