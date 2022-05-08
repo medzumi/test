@@ -15,14 +15,56 @@ MonoBehaviour:
   _presenter:
   - _key: ShopPresenter
     _presenter:
-      id: 0
+      rid: 7877725513385771021
   - _key: CategroyContainerPresenter
     _presenter:
-      id: 0
+      rid: 7877725513385771023
   - _key: CategroyPresenter
     _presenter:
-      id: 0
+      rid: -2
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 7877725513385771021
+      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
+      data:
+        _presenters:
+        - rid: 7877725513385771022
+    - rid: 7877725513385771022
+      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        FirstContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: ShopPresenter
+          RootToListElementPresenterKey: ShopPresenter
+          ListElementViewModelKey: 
+          ListPropertyKey: 
+        SecondContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: 
+          RootToListElementPresenterKey: 
+          ListElementViewModelKey: 
+          ListPropertyKey: 
+        FirstContainerSelectEvent: 
+        SecondContainerSelectEvent: 
+    - rid: 7877725513385771023
+      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        FirstContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: 
+          RootToListElementPresenterKey: 
+          ListElementViewModelKey: 
+          ListPropertyKey: 
+        SecondContainerPresenter:
+          HasComponentKey: 
+          ListElementPresenterKey: 
+          RootToListElementPresenterKey: 
+          ListElementViewModelKey: 
+          ListPropertyKey: 
+        FirstContainerSelectEvent: 
+        SecondContainerSelectEvent: 
