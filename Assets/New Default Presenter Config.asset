@@ -15,56 +15,22 @@ MonoBehaviour:
   _presenter:
   - _key: ShopPresenter
     _presenter:
-      rid: 7877725513385771021
-  - _key: CategroyContainerPresenter
+      rid: 7877725513385771024
+  - _key: Null
     _presenter:
-      rid: 7877725513385771023
-  - _key: CategroyPresenter
-    _presenter:
-      rid: -2
+      rid: 7877725513385771025
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7877725513385771021
-      type: {class: AggregatePresenter, ns: Game.CoreLogic, asm: ecslite.unityPresenting}
-      data:
-        _presenters:
-        - rid: 7877725513385771022
-    - rid: 7877725513385771022
-      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
+    - rid: 7877725513385771024
+      type: {class: ContainerPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
       data:
         HasComponentKey: 
-        FirstContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: ShopPresenter
-          RootToListElementPresenterKey: ShopPresenter
-          ListElementViewModelKey: 
-          ListPropertyKey: 
-        SecondContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: 
-          RootToListElementPresenterKey: 
-          ListElementViewModelKey: 
-          ListPropertyKey: 
-        FirstContainerSelectEvent: 
-        SecondContainerSelectEvent: 
-    - rid: 7877725513385771023
-      type: {class: SelectContainerPresenter, ns: Game.View, asm: Assembly-CSharp}
+        ListElementPresenterKey: Null
+        RootToListElementPresenterKey: Null
+        ListElementViewModelKey: Category
+        ListPropertyKey: collection
+    - rid: 7877725513385771025
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
       data:
-        HasComponentKey: 
-        FirstContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: 
-          RootToListElementPresenterKey: 
-          ListElementViewModelKey: 
-          ListPropertyKey: 
-        SecondContainerPresenter:
-          HasComponentKey: 
-          ListElementPresenterKey: 
-          RootToListElementPresenterKey: 
-          ListElementViewModelKey: 
-          ListPropertyKey: 
-        FirstContainerSelectEvent: 
-        SecondContainerSelectEvent: 
+        _presenters: []

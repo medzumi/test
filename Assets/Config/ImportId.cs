@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ApplicationScripts.CodeExtensions;
 using ApplicationScripts.Logic.Features.Indexing;
 using Leopotam.EcsLite;
 

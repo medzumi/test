@@ -1,10 +1,10 @@
 using Game.CoreLogic;
-using Presenter;
+using presenting.ecslite;
 using ViewModel;
 
 namespace Game.PresenterLogic
 {
-    public class NamePresenter : AbstractEcsPresenter<NamePresenter, IViewModel, NameComponent>
+    public class NamePresenter : AbstractPresenter<NamePresenter, IViewModel, NameComponent>
     {
         
     }

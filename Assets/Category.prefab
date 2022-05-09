@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8570067196464463735}
   - component: {fileID: 8570067196464463728}
   - component: {fileID: 8570067196464463729}
-  - component: {fileID: 8570067196464463733}
   - component: {fileID: 8570067196464463734}
   - component: {fileID: 8570067196464463732}
+  - component: {fileID: 1572000497692709455}
   m_Layer: 5
   m_Name: Category
   m_TagString: Untagged
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 70
-    m_Right: 70
+    m_Left: 350
+    m_Right: 350
     m_Top: 50
     m_Bottom: 10
   m_ChildAlignment: 4
@@ -107,35 +107,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8570067196464463733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8570067196464463731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b7cf1c4bad048838da1059b34e56cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _customPairs:
-  - Key: LotList
-    Data:
-      rid: 7877725513385771012
-  - Key: CategoryName
-    Data:
-      rid: 7877725513385771014
-  _viewModelPlaces: []
-  references:
-    version: 2
-    RefIds:
-    - rid: 7877725513385771012
-      type: {class: CollectionData, ns: ViewModel, asm: ecslite.unityPresenting}
-    - rid: 7877725513385771014
-      type: {class: StringViewModelProperty, ns: ViewModel.UniTaskData, asm: ecslite.unityPresenting}
-      data:
-        _defaultValue: Error
 --- !u!114 &8570067196464463734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +139,23 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1572000497692709455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570067196464463731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fe773267e3a6c4e985cc141deca763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customPairs: []
+  _viewModelPlaces: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8570067197648475342
 GameObject:
   m_ObjectHideFlags: 0

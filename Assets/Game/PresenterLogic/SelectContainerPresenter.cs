@@ -1,19 +1,20 @@
 using System;
 using Game.CoreLogic;
 using Game.PresenterLogic;
+using presenting.ecslite;
 using Unity;
 using ViewModel;
 
 namespace Game.View
 {
     [Serializable]
-    public class SelectContainerPresenter : AbstractEcsPresenter<SelectContainerPresenter, IViewModel, ContainerComponent>
+    public class SelectContainerPresenter : AbstractPresenter<SelectContainerPresenter, IViewModel, ContainerComponent>
     {
         public ContainerPresenter FirstContainerPresenter = ContainerPresenter.Create();
         public ContainerPresenter SecondContainerPresenter = ContainerPresenter.Create();
 
-        [ViewDataKeyProperty] public string FirstContainerSelectEvent;
-        [ViewDataKeyProperty] public string SecondContainerSelectEvent;
+        public string FirstContainerSelectEvent;
+        public string SecondContainerSelectEvent;
 
         private bool _isRaisedEvent = false;
         
@@ -30,11 +31,11 @@ namespace Game.View
 
             var disposable = _firstContainerEvent.Subscribe(FirstEventAction);
             this.AddTo(disposable);
-            viewModel.AddTo(disposable);
+            viewModel.Subscribe(disposable);
 
             disposable = _secondContainerEvent.Subscribe(SecondEventAction);
             this.AddTo(disposable);
-            viewModel.AddTo(disposable);
+            viewModel.Subscribe(disposable);
         }
 
         protected override SelectContainerPresenter CloneHandler()

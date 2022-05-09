@@ -1,12 +1,13 @@
 using System;
 using Game.CoreLogic;
+using presenting.ecslite;
 using UnityEngine;
 using ViewModel;
 
 namespace Game.PresenterLogic
 {
     [Serializable]
-    public class SelectAnalyticPresenter : AbstractEcsPresenter<SelectAnalyticPresenter, IViewModel>
+    public class SelectAnalyticPresenter : AbstractPresenter<SelectAnalyticPresenter, IViewModel>
     {
         public string PlaceName;
         public string StringPropertyName;
@@ -19,7 +20,7 @@ namespace Game.PresenterLogic
             _viewModelEvent = viewModel.GetViewModelData<IViewModelEvent<string>>(StringPropertyName);
             var disposable = _viewModelEvent.Subscribe(AnalyticMethod);
             this.AddTo(disposable);
-            viewModel.AddTo(disposable);
+            viewModel.Subscribe(disposable);
         }
 
         protected override SelectAnalyticPresenter CloneHandler()

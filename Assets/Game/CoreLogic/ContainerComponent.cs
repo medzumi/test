@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using ApplicationScripts.CodeExtensions;
 using ecslite.extensions;
 using Leopotam.EcsLite;
+using Utilities.CodeExtensions;
 
 namespace Game.CoreLogic
 {

@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.CoreLogic;
+using presenting.ecslite;
 using Unity;
 using UnityEngine;
+using unityPresenting.Unity;
 using ViewModel;
 
 namespace Game.PresenterLogic
 {
-    public class UnifiedViewKeyPresenter : AbstractEcsPresenter<UnifiedViewKeyPresenter, IViewModel, UnifiedViewKeyComponent>
+    public class UnifiedViewKeyPresenter : AbstractPresenter<UnifiedViewKeyPresenter, IViewModel, UnifiedViewKeyComponent>
     {
         public bool IsRethrowExceptionOrCallDefault;
 

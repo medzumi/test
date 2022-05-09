@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using ApplicationScripts.CodeExtensions;
 using Leopotam.EcsLite;
+using Utilities.CodeExtensions;
 
 public struct InventoryData : IEcsAutoReset<InventoryData>
 {

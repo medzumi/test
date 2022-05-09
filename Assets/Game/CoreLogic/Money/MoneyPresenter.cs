@@ -1,10 +1,11 @@
 ﻿using System;
+using presenting.ecslite;
 using ViewModel;
 
 namespace Game.CoreLogic
 {
     [Serializable]
-    public class MoneyPresenter : AbstractEcsPresenter<MoneyPresenter, IViewModel, MoneyComponent>
+    public class MoneyPresenter : AbstractPresenter<MoneyPresenter, IViewModel, MoneyComponent>
     {
         public string MoneyKey;
         

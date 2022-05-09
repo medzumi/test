@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ApplicationScripts.CodeExtensions;
 using ApplicationScripts.Ecs;
 using ApplicationScripts.Ecs.Utility;
 using ApplicationScripts.Logic.Features.Indexing;
-using EcsViewModelPresenting;
 using Leopotam.EcsLite;
 using Newtonsoft.Json.Linq;
-using Presenting;
+using Utilities.CodeExtensions;
 using ViewModel;
 
 namespace ApplicationScripts.Logic.Config

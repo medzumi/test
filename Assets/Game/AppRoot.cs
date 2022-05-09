@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using ApplicationScripts.Ecs;
-using ApplicationScripts.Logic.Features.Indexing;
-using EcsViewModelPresenting;
 using Game.CoreLogic;
 using Game.PresenterLogic;
 using Leopotam.EcsLite;
+using presenting.ecslite;
 using Unity;
 #if UNITY_EDITOR
 using Leopotam.EcsLite.UnityEditor;
 #endif
 using UnityEngine;
+using unityPresenting.Unity;
 using ViewModel;
 
 
@@ -138,6 +138,360 @@ namespace Game
             unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
             {
                 Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
+            });
+            
+            entity = world.NewEntity();
+            containerComponent.List.Add(entity);
+            categoryComponent.Add(entity, new CategoryComponent()
+            {
+                Value = "Best"
+            });
+            categoryContainer = new ContainerComponent()
+            {
+                List = new List<int>()
+            };
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Best_2"
+            });
+
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_5"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Gold",
+                Price = 100
+            });
+            unifiedViewKeyComponent.Add(entity, new UnifiedViewKeyComponent()
+            {
+                Value = "Lootbox"
+            });
+            
+            entity = world.NewEntity();
+            categoryContainer.List.Add(entity);
+            nameComponent.Add(entity, new NameComponent()
+            {
+                Value = "Lot_6"
+            });
+            timerComponent.Add(entity, new TimerComponent()
+            {
+                TimerValue = new TimeSpan(1, 1, 1, 1)
+            });
+            purchaseCounterComponent.Add(entity, new PurchaseCounterComponent()
+            {
+                Count = 5
+            });
+            hardValuePricePool.Add(entity, new HardValuePriceComponent()
+            {
+                CurrencyName = "Saphire",
+                Price = 100
             });
             
             entity = world.NewEntity();
