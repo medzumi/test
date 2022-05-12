@@ -22,8 +22,17 @@
         "com.medzumi.ecslite": "3000.0.0"
       }
     },
-    "com.medzumi.ecslite.unitypresenting": {
+    "com.medzumi.presenting": {
       "version": "file:ecslite.unityPresenting",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.medzumi.utilities": "1.0.0",
+        "com.medzumi.utilities.unity": "1.0.0"
+      }
+    },
+    "com.medzumi.presenting.ecslite": {
+      "version": "file:presenting.ecslite",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -46,6 +55,12 @@
       "dependencies": {
         "com.medzumi.utilities": "1.0.0"
       }
+    },
+    "com.medzumi.viewmodel": {
+      "version": "file:viewModel",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.collab-proxy": {
       "version": "1.15.15",
