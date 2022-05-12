@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8570067196464463729}
   - component: {fileID: 8570067196464463734}
   - component: {fileID: 8570067196464463732}
-  - component: {fileID: 1572000497692709455}
+  - component: {fileID: 8268408612697468448}
   m_Layer: 5
   m_Name: Category
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &1572000497692709455
+--- !u!114 &8268408612697468448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,14 +148,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8570067196464463731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82fe773267e3a6c4e985cc141deca763, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b7cf1c4bad048838da1059b34e56cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customPairs: []
+  _customPairs:
+  - Key: name
+    Data:
+      rid: 794452372118831105
   _viewModelPlaces: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 794452372118831105
+      type: {class: StringViewModelProperty, ns: ViewModel.UniTaskData, asm: viewModel}
+      data:
+        _defaultValue: 
 --- !u!1 &8570067197648475342
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +175,7 @@ GameObject:
   - component: {fileID: 8570067197648475378}
   - component: {fileID: 8570067197648475379}
   - component: {fileID: 8570067197648475340}
+  - component: {fileID: 3955980098590407310}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -257,3 +265,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3955980098590407310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570067197648475342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4803fddaf94ea88ef8d3f5548f5e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _monoViewModel: {fileID: 8268408612697468448}
+    _key: name
+  _text: {fileID: 8570067197648475379}

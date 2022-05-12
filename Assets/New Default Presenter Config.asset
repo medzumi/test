@@ -18,19 +18,27 @@ MonoBehaviour:
       rid: 7877725513385771024
   - _key: Null
     _presenter:
-      rid: 7877725513385771025
+      rid: 794452372118831107
+  - _key: CategoryPresenter
+    _presenter:
+      rid: 794452372118831106
   references:
     version: 2
     RefIds:
+    - rid: 794452372118831106
+      type: {class: NamePresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        PropertyKey: name
+    - rid: 794452372118831107
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenters: []
     - rid: 7877725513385771024
       type: {class: ContainerPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
       data:
         HasComponentKey: 
-        ListElementPresenterKey: Null
+        ListElementPresenterKey: CategoryPresenter
         RootToListElementPresenterKey: Null
         ListElementViewModelKey: Category
         ListPropertyKey: collection
-    - rid: 7877725513385771025
-      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
-      data:
-        _presenters: []

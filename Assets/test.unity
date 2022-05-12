@@ -301,7 +301,6 @@ GameObject:
   - component: {fileID: 939496592}
   - component: {fileID: 939496594}
   - component: {fileID: 939496593}
-  - component: {fileID: 939496596}
   - component: {fileID: 939496595}
   m_Layer: 5
   m_Name: Content
@@ -379,28 +378,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 939496591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf2773d9f65441f89b76a5be81906122, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cf5260c93104403bed62510b108024c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectionData:
+  _content: {fileID: 939496592}
+  _collectionDataProvider:
     _monoViewModel: {fileID: 1070322397}
     _key: collection
-  _viewport: {fileID: 420926574}
-  _content: {fileID: 939496592}
-  _isLooped: 0
-  _direction: 0
---- !u!114 &939496596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939496591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e197dba0fc54005bdeda28eb7291f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1070322392
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,18 +499,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070322392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82fe773267e3a6c4e985cc141deca763, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b7cf1c4bad048838da1059b34e56cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _customPairs:
   - Key: collection
     Data:
-      rid: 7877725513385771026
+      rid: 794452372118831104
   _viewModelPlaces: []
   references:
     version: 2
     RefIds:
-    - rid: 7877725513385771026
+    - rid: 794452372118831104
       type: {class: CollectionData, ns: ViewModel, asm: viewModel}
 --- !u!1 &1151314543
 GameObject:

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: New Default Mono Scriptable View Fabric
   m_EditorClassIdentifier: 
   _views:
-  - {fileID: 1572000497692709455, guid: f569d4d0bbb7de14b9a3acfdc4c970c7, type: 3}
+  - {fileID: 8268408612697468448, guid: f569d4d0bbb7de14b9a3acfdc4c970c7, type: 3}
