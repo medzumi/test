@@ -13,28 +13,57 @@ MonoBehaviour:
   m_Name: New Default Presenter Config
   m_EditorClassIdentifier: 
   _presenter:
-  - _key: ShopPresenter
+  - _key: ConcreteShopPresenter
     _presenter:
-      rid: 7877725513385771024
+      id: 0
   - _key: Null
     _presenter:
-      rid: 794452372118831107
+      id: 1
   - _key: CategoryPresenter
     _presenter:
-      rid: 794452372118831106
+      id: 2
+  - _key: ConcreteLotPresenterWithSingleOption
+    _presenter:
+      id: 3
+  - _key: CategoryCollectionPresenter
+    _presenter:
+      id: 4
+  - _key: NamePresenter
+    _presenter:
+      id: 5
+  - _key: CountPresenter
+    _presenter:
+      id: 6
+  - _key: LotPresenter
+    _presenter:
+      id: 7
+  - _key: ShopPresenter
+    _presenter:
+      id: 8
+  - _key: WindowsPresenter
+    _presenter:
+      id: 9
+  - _key: LotPurchaseOptionsPresenter
+    _presenter:
+      id: 10
+  - _key: LotCollectionPresenter
+    _presenter:
+      id: 11
+  - _key: PurchaseOptionPresenter
+    _presenter:
+      id: 12
+  - _key: OpenPurchaseOptionsPresenter
+    _presenter:
+      id: 13
+  - _key: PurchasePresenter
+    _presenter:
+      id: 14
+  - _key: ConcreteLotPresenterWithMultipleOptions
+    _presenter:
+      id: 15
   references:
-    version: 2
-    RefIds:
-    - rid: 794452372118831106
-      type: {class: NamePresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
-      data:
-        HasComponentKey: 
-        PropertyKey: name
-    - rid: 794452372118831107
-      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
-      data:
-        _presenters: []
-    - rid: 7877725513385771024
+    version: 1
+    00000000:
       type: {class: ContainerPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
       data:
         HasComponentKey: 
@@ -42,3 +71,99 @@ MonoBehaviour:
         RootToListElementPresenterKey: Null
         ListElementViewModelKey: Category
         ListPropertyKey: collection
+    00000001:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys: []
+    00000002:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - CategoryCollectionPresenter
+        - NamePresenter
+    00000003:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - NamePresenter
+        - CountPresenter
+        - PurchasePresenter
+    00000004:
+      type: {class: ContainerPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        ListElementPresenterKey: LotPresenter
+        RootToListElementPresenterKey: Null
+        ListElementViewModelKey: DummyViewModel
+        ListPropertyKey: collection
+    00000005:
+      type: {class: NamePresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        PropertyKey: name
+    00000006:
+      type: {class: CounterPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        CountKey: Counter
+    00000007:
+      type: {class: UnifiedViewKeyPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        DefaultComposition:
+          UnifiedViewKey: 
+          ViewModelKey: Lot
+          PresenterKey: ConcreteLotPresenterWithSingleOption
+        Compositions:
+        - UnifiedViewKey: Lootbox
+          ViewModelKey: LootboxLot
+          PresenterKey: ConcreteLotPresenterWithMultipleOptions
+        ViewPropertyKey: concreteView
+    00000008:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - ConcreteShopPresenter
+        - WindowsPresenter
+    00000009:
+      type: {class: WindowsPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        SubWindowsViewPropertyKey: subWindow
+        WindowsCompositions:
+        - UnifiedViewKey: PurchaseOptionsWindow
+          ViewModelKey: PurchaseOptionsWindow
+          PresenterKey: LotPurchaseOptionsPresenter
+    0000000A:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - LotCollectionPresenter
+    0000000B:
+      type: {class: ContainerPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        HasComponentKey: 
+        ListElementPresenterKey: PurchaseOptionPresenter
+        RootToListElementPresenterKey: Null
+        ListElementViewModelKey: PurchaseOption
+        ListPropertyKey: collection
+    0000000C:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - NamePresenter
+        - PurchasePresenter
+    0000000D:
+      type: {class: OpenSubWindowPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        EventKey: purchase
+        WindowKey: PurchaseOptionsWindow
+    0000000E:
+      type: {class: CallAdsWatchPresenter, ns: Game.PresenterLogic, asm: Assembly-CSharp}
+      data:
+        PurchaseCommandKey: purchase
+    0000000F:
+      type: {class: AggregatePresenter, ns: presenting.ecslite.ViewModelPresenters, asm: presenting.ecslite}
+      data:
+        _presenterKeys:
+        - NamePresenter
+        - CountPresenter
+        - OpenPurchaseOptionsPresenter

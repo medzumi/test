@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8570067196464463734}
   - component: {fileID: 8570067196464463732}
   - component: {fileID: 8268408612697468448}
+  - component: {fileID: 4796927694358419972}
   m_Layer: 5
   m_Name: Category
   m_TagString: Untagged
@@ -32,7 +33,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8570067197648475341}
   m_Father: {fileID: 0}
@@ -154,15 +154,35 @@ MonoBehaviour:
   _customPairs:
   - Key: name
     Data:
-      rid: 794452372118831105
+      id: 0
+  - Key: collection
+    Data:
+      id: 1
   _viewModelPlaces: []
   references:
-    version: 2
-    RefIds:
-    - rid: 794452372118831105
+    version: 1
+    00000000:
       type: {class: StringViewModelProperty, ns: ViewModel.UniTaskData, asm: viewModel}
       data:
         _defaultValue: 
+    00000001:
+      type: {class: CollectionData, ns: ViewModel, asm: viewModel}
+--- !u!114 &4796927694358419972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570067196464463731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf5260c93104403bed62510b108024c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _content: {fileID: 8570067196464463730}
+  _collectionDataProvider:
+    _monoViewModel: {fileID: 8268408612697468448}
+    _key: collection
 --- !u!1 &8570067197648475342
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +213,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8570067196464463730}
   m_RootOrder: 0

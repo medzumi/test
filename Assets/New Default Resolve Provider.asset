@@ -16,5 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80620dd96634728498bfb2d86097b41a, type: 2}
   _injectors:
   - {fileID: 11400000, guid: 02091392dae37c546b754a03f9240521, type: 2}
+  - {fileID: 11400000, guid: 867cc35671a5fbb49be5779b017cc4cd, type: 2}
   _scriptableViewFabrics:
   - {fileID: 11400000, guid: e7dc234ce1da41344ae3031cc78fff0c, type: 2}

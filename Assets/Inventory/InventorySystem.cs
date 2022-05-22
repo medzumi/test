@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace Inventory
 {
-    public class InventorySystem : EcsSystemBase
+    public class InventorySystem : EcsSystemBase, IEcsRunSystem
     {
         private readonly string _workWorld;
         private readonly string _staticWorld;
@@ -45,7 +45,7 @@ namespace Inventory
             IndexedEntityLibrarySystem<InventoryIndex, int>.GetLibrary(world);
         }
 
-        public override void Run(EcsSystems systems)
+        public void Run(EcsSystems systems)
         {
             AddOperations();
             RemoveOperations();
@@ -74,9 +74,9 @@ namespace Inventory
                             {
                                 stackable.Count = stackable.MaxCount;
                                 addCommand.Count -= space;
-                                _addItemCommands.Set(addEntity, addCommand);
+                                _addItemCommands.Get(addEntity) = addCommand;
                             }
-                            _stackablePool.Set(findInventoryData.ItemIndex, stackable);
+                            _stackablePool.Get(findInventoryData.ItemIndex) = stackable;
                         }
                     }   
                 }
@@ -104,7 +104,7 @@ namespace Inventory
                             if (stackable.Count > removeCommand.Count)
                             {
                                 stackable.Count -= removeCommand.Count;
-                                _stackablePool.Set(findInventoryData.ItemIndex, stackable);
+                                _stackablePool.Get(findInventoryData.ItemIndex) = stackable;
                                 _removeItemCommands.Del(removeEntity);
                             }
                             else
@@ -112,7 +112,7 @@ namespace Inventory
                                 removeCommand.Count -= stackable.Count;
                                 _stackablePool.Del(findInventoryData.ItemIndex);
                                 inventory.Data[findInventoryData.SlotIndex] = -1;
-                                _removeItemCommands.Set(removeEntity, removeCommand);
+                                _removeItemCommands.Get(removeEntity) = removeCommand;
                             }
                         }
                     }

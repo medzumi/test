@@ -42,10 +42,10 @@ namespace ApplicationScripts.Logic.Config
             foreach (var entity in _importableEntities)
             {
                 var newEntity = world.NewEntity();
-                _importableEntityPool.Add(newEntity, new ReferenceComponent<JObject>()
+                _importableEntityPool.Add(newEntity) = new ReferenceComponent<JObject>()
                 {
                     reference = entity
-                });
+                };
             }
             base.PreInit(systems);
             foreach (var entity in _filter3)
@@ -112,8 +112,8 @@ namespace ApplicationScripts.Logic.Config
                 var reference = _jObjectPool.Get(entity).reference;
                 if (reference.ContainsKey(_exampleImportType.ComponentName))
                 {
-                    _importTypePool.Add(entity,
-                        reference.GetValue(_exampleImportType.ComponentName)!.ToObject<ImportableComponent>());
+                    _importTypePool.Add(entity) =
+                        reference.GetValue(_exampleImportType.ComponentName)!.ToObject<ImportableComponent>();
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace ApplicationScripts.Logic.Config
             {
                 foreach (var toEntity in _internalImportCommand.Get(entity).Ids)
                 {
-                    _importTypePool.EnsureSet(toEntity, _importTypePool.Get(entity));
+                    _importTypePool.EnsureGet(toEntity) = _importTypePool.Get(entity);
                 }
             }
         }

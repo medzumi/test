@@ -10,53 +10,64 @@ using ViewModel;
 
 namespace Game.PresenterLogic
 {
+    [Serializable]
+    public struct Composition
+    {
+        public string UnifiedViewKey;
+        [ViewKeyProperty(typeof(IViewModel))] public string ViewModelKey;
+        [PresenterKeyProperty(typeof(EcsPresenterData), typeof(IViewModel))] public string PresenterKey;
+    }
+    
+    
     public class UnifiedViewKeyPresenter : AbstractPresenter<UnifiedViewKeyPresenter, IViewModel, UnifiedViewKeyComponent>
     {
-        public bool IsRethrowExceptionOrCallDefault;
-
-        public string ViewModelPlaceKey;
-        [ViewKeyProperty(typeof(IViewModel))] public string DefaultViewModelKey;
+        public Composition DefaultComposition;
         public List<Composition> Compositions = new List<Composition>();
 
-        [Serializable]
-        public struct Composition
-        {
-            public string UnifiedViewKey;
-            [ViewKeyProperty(typeof(IViewModel))] public string ViewModelKey;
-            [PresenterKeyProperty(typeof(EcsPresenterData), typeof(IViewModel))] public string PresenterKey;
-        }
+        public string ViewPropertyKey;
 
-        private string _currentKey;
+        private Composition _composition;
+        private ViewViewModelData<IViewModel> _viewProperty;
+
+        protected override UnifiedViewKeyPresenter CloneHandler()
+        {
+            var clone = base.CloneHandler();
+            clone.ViewPropertyKey = ViewPropertyKey;
+            clone.Compositions = Compositions;
+            clone.DefaultComposition = DefaultComposition;
+            return clone;
+        }
 
         public override void Initialize(EcsPresenterData ecsPresenterData, IViewModel viewModel)
         {
             base.Initialize(ecsPresenterData, viewModel);
+            _viewProperty = viewModel.GetViewModelData<ViewViewModelData<IViewModel>>(ViewPropertyKey);
         }
 
-        protected override void Update(UnifiedViewKeyComponent data)
+        public override void Update(UnifiedViewKeyComponent? data)
         {
             base.Update(data);
-            try
+            var composition = DefaultComposition;
+            if (data.HasValue)
             {
-                if (!string.Equals(_currentKey, data.Value))
-                {
-                    _currentKey = data.Value;
-                    var composiotion =
-                        Compositions.Single(composition => string.Equals(composition.UnifiedViewKey, data.Value));
-                    var presenter = PresenterResolver.Resolve<EcsPresenterData, IViewModel>(composiotion.PresenterKey);
-                    var viewModel = ViewResolver.Resolve<IViewModel>(composiotion.ViewModelKey);
-                    var presenterData = EcsPresenterData;
-                    presenter.Initialize(presenterData, viewModel);
-                    View.SetViewModel(viewModel, ViewModelPlaceKey);
-                }
+                composition = Compositions.Single(comp => string.Equals(comp.UnifiedViewKey, data.Value.Value));
             }
-            catch (Exception e)
+
+            if (!string.Equals(_composition.UnifiedViewKey, composition.UnifiedViewKey))
             {
-                if (IsRethrowExceptionOrCallDefault)
-                {
-                    throw e;
-                }
+                _composition = composition;
+                _viewProperty.Fill(RequestView, true);
             }
+        }
+
+        private IViewModel RequestView()
+        {
+            var presenter = PresenterResolver.Resolve<EcsPresenterData, IViewModel>(_composition.PresenterKey);
+            var viewModel = ViewResolver.Resolve<IViewModel>(_composition.ViewModelKey);
+            var presenterData = EcsPresenterData;
+            presenter.Initialize(presenterData, viewModel);
+
+            return viewModel;
         }
     }
 }

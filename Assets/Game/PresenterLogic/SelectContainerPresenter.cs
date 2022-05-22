@@ -8,7 +8,7 @@ using ViewModel;
 namespace Game.View
 {
     [Serializable]
-    public class SelectContainerPresenter : AbstractPresenter<SelectContainerPresenter, IViewModel, ContainerComponent>
+    public class SelectContainerPresenter : AbstractPresenter<SelectContainerPresenter, IViewModel, LinkContainer<DefaultLink>>
     {
         public ContainerPresenter FirstContainerPresenter = ContainerPresenter.Create();
         public ContainerPresenter SecondContainerPresenter = ContainerPresenter.Create();
