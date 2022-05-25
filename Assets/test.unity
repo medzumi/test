@@ -803,7 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _testSystem:
     _monoViewModel: {fileID: 1070322397}
-    _presenterKey: ShopPresenter
+    _presenterKey: 3a8fea94-404e-4d46-92e9-952a90ac7867
 --- !u!1 &1486694077
 GameObject:
   m_ObjectHideFlags: 0
