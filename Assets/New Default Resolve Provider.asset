@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ba99ea58c74e7591ac22d7e438f7fb, type: 3}
   m_Name: New Default Resolve Provider
   m_EditorClassIdentifier: 
-  _presenterCollections:
-  - {fileID: 11400000, guid: 80620dd96634728498bfb2d86097b41a, type: 2}
+  abstractPresentersContainer: {fileID: 11400000, guid: 8e9e81db7aa9da545874aec6490e43ec, type: 2}
   _injectors:
   - {fileID: 11400000, guid: 02091392dae37c546b754a03f9240521, type: 2}
   - {fileID: 11400000, guid: 867cc35671a5fbb49be5779b017cc4cd, type: 2}
