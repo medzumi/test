@@ -157,7 +157,12 @@ namespace Game
                 .Add(entity)
                 .AdsPlacement = "Test2";
 
-            PresenterSettings.instance.PresenterResolver.Resolve<EcsPresenterData, IViewModel>(_presenterKey)
+            initialize(shopEntity, world);
+        }
+
+        private async void initialize(int modelEntity, EcsWorld world)
+        {
+            (await PresenterSettings.GetInstanceAsync()).PresenterResolver.Resolve<EcsPresenterData, IViewModel>(_presenterKey)
                 .Initialize(new EcsPresenterData()
                 {
                     ModelEntity = modelEntity,
