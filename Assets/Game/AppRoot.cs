@@ -5,15 +5,12 @@ using ApplicationScripts.Ecs.EntityDestroy;
 using Game.CoreLogic;
 using Game.CoreLogic.AdsConfigurations;
 using Game.CoreLogic.Rewarding;
-using Game.PresenterLogic;
 using Leopotam.EcsLite;
-using presenting.ecslite;
 using Unity;
 #if UNITY_EDITOR
 using Leopotam.EcsLite.UnityEditor;
 #endif
 using UnityEngine;
-using unityPresenting.Unity;
 using ViewModel;
 
 
@@ -38,13 +35,7 @@ namespace Game
 #endif
             _systems.Add(_testSystem);
             _systems
-                .Add<AlwaysLinkContainerUpdateSystem<DefaultLink>>()
-                .Add<ViewModelUpdateSystem<InteractComponent>>()
-                .Add<ViewModelUpdateSystem<LinkContainer<DefaultLink>>>()
-                .Add<ViewModelUpdateSystem<NameComponent>>()
-                .Add<ViewModelUpdateSystem<UnifiedViewKeyComponent>>()
-                .Add<ViewModelUpdateSystem<CategoryComponent>>()
-                .Add<ViewModelUpdateSystem<TimerComponent>>();
+                .Add<AlwaysLinkContainerUpdateSystem<DefaultLink>>();
             var adsFeature = new AdsPurchaseService();
             adsFeature
                 .PreAdsSystems
@@ -72,9 +63,6 @@ namespace Game
     {
         [SerializeField] private MonoViewModel _monoViewModel;
 
-        [PresenterKeyProperty(typeof(EcsPresenterData), typeof(IViewModel))] [SerializeField]
-        private string _presenterKey;
-        
         public override void Init(EcsSystems systems)
         {
             base.Init(systems);
@@ -156,13 +144,6 @@ namespace Game
             adsComponent
                 .Add(entity)
                 .AdsPlacement = "Test2";
-
-            PresenterSettings.instance.PresenterResolver.Resolve<EcsPresenterData, IViewModel>(_presenterKey)
-                .Initialize(new EcsPresenterData()
-                {
-                    ModelEntity = modelEntity,
-                    ModelWorld = world,
-                }, _monoViewModel);
         }
     }
 }
