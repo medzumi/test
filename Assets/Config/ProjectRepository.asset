@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1942191683, guid: 665e7007641162d49b570cba8a539e2d, type: 3}
+  m_Name: ProjectRepository
+  m_EditorClassIdentifier: 
+  _openTabs: []
+  <Name>k__BackingField: 
+  <Namespace>k__BackingField: 
+  _settingsKeys: []
+  _settingsValues: []
+  _diagramNames: []
+  _diagrams:
+  - {fileID: 11400000, guid: be524d58ff985944eacc0b9d42e3afac, type: 2}
+  _projectNamespace: 
+  _currentTabs:
+  - _graphIdentifier: ca4c22bc-2bca-4a6a-b1eb-c833230d5e78
+    _graphName: NewUnityGraphData
+    _path: []
+  _name: ProjectRepository

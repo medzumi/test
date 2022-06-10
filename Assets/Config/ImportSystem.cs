@@ -7,7 +7,7 @@ using ApplicationScripts.Logic.Features.Indexing;
 using Leopotam.EcsLite;
 using Newtonsoft.Json.Linq;
 using Utilities.CodeExtensions;
-using ViewModel;
+using runtime;
 
 namespace ApplicationScripts.Logic.Config
 {

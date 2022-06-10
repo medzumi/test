@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="GraphEditorWindow.uss" />
+    <GraphAssets.Editor.SplitView fixed-pane-initial-dimension="300">
+        <ui:VisualElement name="left-panel" />
+        <ui:VisualElement>
+            <GraphAssets.Editor.SimpleGraphView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </GraphAssets.Editor.SplitView>
+</ui:UXML>

@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1328937199, guid: 019118f6de8965947b2d943bbe59c84b, type: 3}
+  m_Name: NewUnityGraphData
+  m_EditorClassIdentifier: 
+  _jsonData: '{"Name":"NewUnityGraphData", "Version":"1,62", "Identifier":"ca4c22bc-2bca-4a6a-b1eb-c833230d5e78",
+    "Type":"Invert.uFrame.MVVM.MVVMGraph", "DocumentationMode":false, "RootNode":{"_CLRType":"Invert.uFrame.MVVM.MVVMNode,
+    Invert.uFrame.MVVM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Name":"",
+    "IsCollapsed":false, "Identifier":"ba804808-bbe6-4f45-a8fe-bb0cdb765d06", "Items":[ 
+    ], "CollapsedValues":{"04d09ea0-fe37-46ee-accc-7c9e3169271b":true, "6f4eb203-ac38-422d-baf4-c8733fd976cd":true,
+    "53e55d5e-497a-457c-a4a2-fbd5537e4bd7":false, "ecba6151-87c3-4109-8222-da8f96bbcc02":false,
+    "ecbb3819-3fb1-4aba-a5a7-772404711783":false, "96113de2-30d5-4fb6-abe4-260ecacc68c3":false,
+    "024f35c4-deca-406f-afd9-ef4ffa975194":false, "3e740edb-8c7e-4c4d-9fcf-7aa9d1118283":false,
+    "b50a113e-d178-450c-9b86-d6673a26a8a9":false, "af6756fd-b0cd-45dc-bfbe-17ce9ce1a667":false,
+    "48759b8b-9a93-4bd5-bd73-f4a54d281f00":false, "54b1da84-b967-4c99-a22b-89b84597a445":false,
+    "c6a76d03-1974-417c-adeb-072416db6a4e":false, "7a978e2f-d73c-426b-a159-14bf56b9bd7e":false,
+    "a998d918-b538-4284-b123-68877f06db12":false, "68ce3c6d-c695-4950-9f58-85adea44c6a3":false,
+    "9da74e55-1820-4add-b544-af6923f5ee27":false, "82655ee2-0c2d-4bca-a8fb-3fd70aed93d9":true,
+    "fee604be-6df2-449c-9e32-b5e89f44112a":false, "a7f29638-4483-4583-9838-0e8fd507d62f":false,
+    "03649945-be54-4fb7-8e75-4d2a6aa5b794":false, "ab3e72bc-2993-40f8-8940-6ec86c292a6f":false,
+    "33f67819-e3a2-4f51-aafa-8c6db82d6c98":false, "3f9fddd5-39cc-4dcf-95d2-88165e300bc3":false,
+    "db56d025-62d4-4a36-ba69-e49e23734d4e":false, "6e32cd30-660c-4be0-b55f-273e1b352eb8":false,
+    "e70fcb22-6f40-4ddc-aa81-b551d68fb68b":false, "b7eb99f3-3b39-4d99-838a-f1433f652664":false,
+    "dbad6cff-8c53-461e-9715-0f7a1de56953":false, "9ededea9-4bef-4916-ab60-bd729231f698":false,
+    "a4a9f9a8-e17d-4208-97d8-64fd436e3d55":false, "021be1fc-26ce-498d-a1c2-4f970563ebbd":false,
+    "efb3de65-cc7c-4ac6-9ca1-f40bb84ff31f":false, "bc1e76b6-9d88-4527-bb6c-a2de57eff655":false,
+    "286fee72-2a75-4e3a-b91a-7b0d651d34d1":false, "fd6299d4-b385-4f5b-8d12-57b99372e429":false,
+    "22e77ffb-8e77-4310-bdfc-1cd87c623721":false, "fd4e4ea5-cf26-47e6-ac1c-24592ff85c23":false,
+    "a6af948d-618e-4fb6-8a4b-9b3d6db0b081":false, "4f869288-985f-430e-a853-6627303a9ce9":false,
+    "38e4571c-92bf-43d8-8502-2f38fc6bf46b":false, "16a6115a-e814-438c-827c-656be4ce9be2":false,
+    "50823149-71ce-4dae-a44e-27d6fa36ca25":false, "805131cf-8657-4974-a1bc-9be2ecdcb8b4":false,
+    "315290fa-77fa-479c-98af-eff0424ba06c":false, "5b789eeb-9c7a-4fca-9674-c781564f2729":false,
+    "0c4d79cc-45bb-48f2-a02a-d3d05b84fa72":false, "1138f8cb-15b9-4066-ba9f-c6464e093f5e":false,
+    "53ba9a2d-e0b8-4548-be3a-30fd13810cf0":false, "45bebd23-23fd-48a9-a356-8c78fcf28609":false,
+    "a1f9928f-df52-4ddb-bfff-f14443577063":false, "de8bf631-da47-4cc2-8181-ae6c0173f44f":false,
+    "1a692347-b053-4e26-9e4d-a4fe05aa5a04":false, "a07d705a-4447-46d9-af18-dd765ddb3c5e":false,
+    "5f3c7a91-bfc0-4cc8-a0e6-0ee497984608":false, "c2b9d872-0ec3-401f-8d13-31ca8b43298e":false,
+    "0c702400-1d6c-4d79-8e97-a7ac18639e93":false, "c4cfafdf-f887-4519-9302-7ed5826d87d2":false,
+    "04624e7e-bcd4-48a5-8813-9bb28d1afe04":false, "bc969748-bdcc-44c1-9e28-a4e51fbfa9df":false,
+    "90dc3a7d-dec7-44a9-ac2c-df76dbba83b1":false, "12d43218-b1ad-4d8c-b7e0-832ac9eb94db":false,
+    "0ab498a4-81cf-4f2f-bcc9-07c8ecd26639":false, "ce2ee1f4-5df0-4133-b140-2b9a05237204":false,
+    "079f317f-47ea-4f45-83e5-01defc9994f7":false, "b6bdbf9a-7cfe-4757-a424-5510cbbddaae":false,
+    "8feac572-b8ac-4286-a00c-555785fd88f1":false, "20440c87-86f6-4006-aa5b-9f5b61dad23f":false,
+    "fdbcf7dd-87a8-4ca8-b385-f93e86605d6a":false, "0d47c89d-d511-4fab-a9b6-18dc5ee6b783":false,
+    "62da52b7-956c-4781-bc0b-05444fbfcd28":false, "d0a4d136-480d-4a1a-b967-a98a08cdca7f":false,
+    "066e9866-572c-4840-887c-cdab1882d4df":false, "cd0bd17f-f965-499d-bc5b-b70133c03272":false,
+    "e434ab3c-674d-46e0-99c7-e28c72ef7500":false, "dd9372eb-5787-4e94-8ae3-35316f0b8399":false,
+    "6f01a802-0dbb-4957-9aa8-9386fd631f34":false, "b3bf4bf3-8301-464b-be1d-12e771cd7329":false,
+    "15b248f8-4ca3-4183-bf20-94db3c4829a4":false, "5984b7b4-8b6b-4db0-b4bd-9821de0d5783":false,
+    "904d2b26-5293-4337-82d0-3c804d174120":false, "8c436471-4df4-4a79-ae8a-ba57fbc0ec47":false,
+    "f698ce60-a722-4176-94bd-a46208c9cfbd":false, "44e1dc1a-29ef-4ad0-a069-0cebaab10f24":false,
+    "72595f47-31a8-43c9-9ae4-fa2838fbe6eb":false, "05a791fd-54a6-4077-856c-e7a07d20aed9":false,
+    "20f6f742-d001-4f95-aff4-c373a5504812":false, "75faee16-8d51-40ba-99d9-b743b76c9a79":false,
+    "de36ce79-2a9d-4615-8d57-6d8611d9b92f":true, "7da29e96-d912-4cdf-8799-5da55476b72f":false,
+    "cf6aa681-1106-4b9b-809f-9e1d90d4ed5e":false, "9ffc4755-8de4-47c3-9eae-91c969a23426":false,
+    "88c299e8-2c7e-409c-b8b5-b0dbd419ac99":false, "7793c03d-4bd6-4c68-bd6a-365af8abfeee":false,
+    "c1c26452-bd1c-4216-8406-36819151f1b4":false, "c73ab595-ba68-44cf-9e60-45b93f9a8847":false,
+    "d037dbcf-6875-4f68-8b53-c17e80870122":false, "2ba8bad9-60ab-40cd-9488-be9ac792bf5d":false,
+    "713f9e2f-1e5c-4ff5-8a3f-9c08f2529595":false, "c3407c7f-8cd2-48a5-b1f2-bfb88ce940a2":true,
+    "c297eb58-90c2-4acd-82aa-9dcf836d9abd":true, "56b90d71-aa1c-4ac2-b848-c1ba64e98a38":false,
+    "98fe78f1-26ed-4aed-87ce-ba2cfe5bd52f":false, "435a81a2-c27e-462f-ad87-58a3c7d9e513":false,
+    "6ec055ee-7579-48d7-82e4-eef13abf0c58":false, "05fa06ef-55a2-41e6-b93c-dab933a84049":false},
+    "Flags":{"_CLRType":"Invert.Core.GraphDesigner.FlagsDictionary, Invert.Core.GraphDesigner,
+    Version=1.1.0.0, Culture=neutral, PublicKeyToken=null"}, "DataBag":{"_CLRType":"Invert.Core.GraphDesigner.DataBag,
+    Invert.Core.GraphDesigner, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null",
+    "04d09ea0-fe37-46ee-accc-7c9e3169271b":"", "6f4eb203-ac38-422d-baf4-c8733fd976cd":"",
+    "82655ee2-0c2d-4bca-a8fb-3fd70aed93d9":"", "de36ce79-2a9d-4615-8d57-6d8611d9b92f":"",
+    "c3407c7f-8cd2-48a5-b1f2-bfb88ce940a2":"", "c297eb58-90c2-4acd-82aa-9dcf836d9abd":""},
+    "IsNewNode":true}, "Nodes":[  ], "ConnectedItems":[  ], "PositionData":{"_CLRType":"FilterPositionData,
+    Invert.Core.GraphDesigner, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null",
+    "ba804808-bbe6-4f45-a8fe-bb0cdb765d06":{"ba804808-bbe6-4f45-a8fe-bb0cdb765d06":{"x":50,
+    "y":80}}}, "FilterState":{"_CLRType":"FilterState, Invert.Core.GraphDesigner,
+    Version=1.1.0.0, Culture=neutral, PublicKeyToken=null", "FilterStack":[  ]},
+    "Settings":{"_CLRType":"ElementDiagramSettings, Invert.Core.GraphDesigner, Version=1.1.0.0,
+    Culture=neutral, PublicKeyToken=null", "CodeGenDisabled":false, "SnapSize":10,
+    "Snap":true, "CodePathStrategyName":"Default", "GridLinesColor":{"r":"0,271",
+    "g":"0,271", "b":"0,271", "a":1}, "GridLinesColorSecondary":{"r":"0,169", "g":"0,169",
+    "b":"0,169", "a":1}, "AssociationLinkColor":{"r":1, "g":1, "b":1, "a":1}, "DefinitionLinkColor":{"r":0,
+    "g":1, "b":1, "a":1}, "InheritanceLinkColor":{"r":0, "g":1, "b":0, "a":1}, "SceneManagerLinkColor":{"r":"0,5",
+    "g":"0,5", "b":"0,5", "a":1}, "SubSystemLinkColor":{"r":"0,5", "g":"0,5", "b":"0,5",
+    "a":1}, "TransitionLinkColor":{"r":1, "g":"0,9215686", "b":"0,01568628", "a":1},
+    "ViewLinkColor":{"r":0, "g":0, "b":1, "a":1}, "RootNamespace":""}, "Changes":[ 
+    ]}'
+  <Namespace>k__BackingField: 
+  _name: 

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d72d34166f4c84298418f2f43dff66, type: 3}
+  m_Name: New Simple Asset Container
+  m_EditorClassIdentifier: 
+  _test:
+    _tObject: {fileID: 0}
+    _key: 57e294d4-762d-4978-8559-de7bd8430e03
+    _injectType: 1
+    _injectObjectType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _objects:
+  - Item1:
+      _name: first
+      _key: 53abbb30-b547-425f-a913-1ac4551925c0
+    Item2: {fileID: 3780798142167038331, guid: 575ac5c9e4826bf4589fec7674fa960c, type: 3}
+  - Item1:
+      _name: second
+      _key: b3428b93-b763-4da0-bab8-e53fd139965d
+    Item2: {fileID: 3780798142167038308, guid: 56b6201c248172d44bdd6c4191306d32, type: 3}
+  - Item1:
+      _name: third
+      _key: 57e294d4-762d-4978-8559-de7bd8430e03
+    Item2: {fileID: 3780798142167038308, guid: a019ce11117d8d34db75c4459f81b322, type: 3}
+  - Item1:
+      _name: second/first
+      _key: d3a5ebe4-c643-4d4b-a3df-cc928ed53436
+    Item2: {fileID: 8570067196464463731, guid: f569d4d0bbb7de14b9a3acfdc4c970c7, type: 3}
+  - Item1:
+      _name: second/second
+      _key: 5f9a1a13-93d4-443f-a757-a382aa1b1353
+    Item2: {fileID: 11400000}
+  - Item1:
+      _name: second/second
+      _key: 76b88566-143a-4cec-a29c-6d9b064918a0
+    Item2: {fileID: 11400000}
+  - Item1:
+      _name: second/second
+      _key: a1b11883-94f3-41ff-bf18-80c501dc0f28
+    Item2: {fileID: 11400000}
