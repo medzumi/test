@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using AssetManagament;
 using UnityEngine;
 using Utilities.CodeExtensions;
+using Utilities.Unity.PropertyAttributes;
 
 namespace GraphAssets
 {
     [CreateAssetMenu]
     public class ScriptableGraph : ScriptableObject
     {
-        [SerializeField] private AssetInject<ScriptableObject> _test;
+        [SerializeField]
+        private AssetInject<ScriptableObject> _test;
         
         [Serializable]
         public class ScriptableObjectDescription
@@ -19,7 +21,8 @@ namespace GraphAssets
             public ScriptableObject scriptableObject;
         }
         
-        [SerializeField] private List<ScriptableObjectDescription> _scriptableObjects = new List<ScriptableObjectDescription>();
+        [SerializeField] 
+        private List<ScriptableObjectDescription> _scriptableObjects = new List<ScriptableObjectDescription>();
 
         public List<ScriptableObjectDescription> ReadScriptableObjects(List<ScriptableObjectDescription> scriptableObjects)
         {

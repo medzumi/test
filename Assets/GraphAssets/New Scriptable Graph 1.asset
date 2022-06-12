@@ -134,8 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _test:
     _tObject: {fileID: 0}
-    _key: 
-    _injectType: 0
+    _key: 5f9a1a13-93d4-443f-a757-a382aa1b1353
+    _injectType: 1
     _injectObjectType: UnityEngine.ScriptableObject, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   _scriptableObjects:
@@ -151,17 +151,17 @@ MonoBehaviour:
   - x: -250.3999
     y: -258.3999
     scriptableObject: {fileID: 330818140260824813}
-  - x: 100
-    y: 100
+  - x: -465.59985
+    y: 99.59999
     scriptableObject: {fileID: 2971985636660731150}
   - x: -27.215973
     y: 313.59998
     scriptableObject: {fileID: -6846765945071353168}
-  - x: 300
-    y: 300
+  - x: 403.99997
+    y: 416.4001
     scriptableObject: {fileID: -8189202258911022152}
-  - x: 350
-    y: 350
+  - x: 515.19995
+    y: -3.1999817
     scriptableObject: {fileID: 3699429042856932693}
 --- !u!114 &52830942336431163
 MonoBehaviour:

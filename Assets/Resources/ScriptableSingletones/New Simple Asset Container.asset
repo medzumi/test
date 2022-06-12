@@ -47,3 +47,7 @@ MonoBehaviour:
       _name: second/second
       _key: a1b11883-94f3-41ff-bf18-80c501dc0f28
     Item2: {fileID: 11400000}
+  - Item1:
+      _name: second/second
+      _key: 1ad44f46-b977-4cfe-a4ec-ffc0776c4deb
+    Item2: {fileID: 11400000}

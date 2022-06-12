@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using AssetManagament;
 using GraphAssets;
 using GraphAssets.Editor;
@@ -8,15 +9,14 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using Utilities.Unity.Editor;
 using Object = UnityEngine.Object;
 
 
 public class GraphEditorWindow : EditorWindow
 {
-    private readonly static List<Type> _types = new List<Type>(); 
-    
+    private readonly static List<Type> _types = new List<Type>();
+
     static GraphEditorWindow()
     {
         _types.AddRange(AppDomain.CurrentDomain
@@ -24,7 +24,7 @@ public class GraphEditorWindow : EditorWindow
             .SelectMany(assembly => assembly.GetTypes())
             .Where(t => typeof(ScriptableObject).IsAssignableFrom(t)));
     }
-    
+
     private ScriptableGraph _scriptableGraph;
     private SimpleNode _selectedNode;
     private SimpleGraphView _graphView;
@@ -33,6 +33,7 @@ public class GraphEditorWindow : EditorWindow
 
     private readonly Dictionary<SimpleNode, ScriptableGraph.ScriptableObjectDescription> _scriptableObjectDescriptions =
         new Dictionary<SimpleNode, ScriptableGraph.ScriptableObjectDescription>();
+
     private readonly List<SimpleNode> _nodes = new List<SimpleNode>();
 
     private readonly List<ScriptableGraph.ScriptableObjectDescription> _currentScriptableObjectDescription =
@@ -54,9 +55,10 @@ public class GraphEditorWindow : EditorWindow
     {
         // Each editor window contains a root VisualElement object
         VisualElement root = rootVisualElement;
-        
+
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/GraphAssets/Editor/GraphEditorWindow.uxml");
+        var visualTree =
+            AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/GraphAssets/Editor/GraphEditorWindow.uxml");
         VisualElement labelFromUXML = visualTree.Instantiate();
         root.Add(labelFromUXML);
         labelFromUXML.StretchToParentSize();
@@ -77,7 +79,8 @@ public class GraphEditorWindow : EditorWindow
 
     private void GraphDeleteAction(GraphElement obj)
     {
-        if (obj is SimpleNode simpleNode && _scriptableGraph && _scriptableObjectDescriptions.TryGetValue(simpleNode, out var description))
+        if (obj is SimpleNode simpleNode && _scriptableGraph &&
+            _scriptableObjectDescriptions.TryGetValue(simpleNode, out var description))
         {
             _scriptableGraph.DeleteScriptableObjectDescription(description);
         }
@@ -128,7 +131,8 @@ public class GraphEditorWindow : EditorWindow
         CreatePorts(scriptableObjectDescription, node, new List<Port>());
     }
 
-    private List<Port> CreatePorts(ScriptableGraph.ScriptableObjectDescription objectDescription, Node node, List<Port> ports)
+    private List<Port> CreatePorts(ScriptableGraph.ScriptableObjectDescription objectDescription, Node node,
+        List<Port> ports)
     {
         var serializedObjects = new SerializedObject(objectDescription.scriptableObject);
         var itterator = serializedObjects.GetIterator();
@@ -147,7 +151,7 @@ public class GraphEditorWindow : EditorWindow
 
         return ports;
     }
-    
+
     private SimpleNode CreateNode(ScriptableGraph.ScriptableObjectDescription scriptableObjectDescription)
     {
         var node = new SimpleNode();
@@ -190,6 +194,7 @@ public class GraphEditorWindow : EditorWindow
                 _graphView.RemoveElement(keyValuePair.Key);
             }
         }
+
         _scriptableObjectDescriptions.Clear();
     }
 
@@ -230,37 +235,115 @@ public static class NodePortFabric
     private static readonly Dictionary<Type, IConcreteNodePortFabric> _fabrics =
         new Dictionary<Type, IConcreteNodePortFabric>();
 
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ConcreteNodePortFabricAttribute : Attribute
+    static NodePortFabric()
     {
-        public readonly Type Type;
-
-        public ConcreteNodePortFabricAttribute(Type type)
+        var linq = AppDomain.CurrentDomain
+            .GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(t => typeof(IConcreteNodePortFabric).IsAssignableFrom(t))
+            .Select(t => (t, t.GetCustomAttribute<ConcreteNodePortFabricAttribute>()))
+            .Where(tuple => tuple.Item2 != null);
+        foreach (var valueTuple in linq)
         {
-            Type = type;
+            _fabrics[valueTuple.Item2.Type] = Activator.CreateInstance(valueTuple.t) as IConcreteNodePortFabric;
         }
     }
-    
+
+    public static Port CreatePortForObject(Object obj, Node node)
+    {
+        var nodeType = node.GetType();
+        while (nodeType != null)
+        {
+            if (_fabrics.TryGetValue(nodeType, out var fabric))
+            {
+                return fabric.CreateForObject(obj, node);
+            }
+
+            nodeType = nodeType.BaseType;
+        }
+
+        return null;
+    }
+
+    public static Port CreateForProperty(SerializedProperty property, Node node)
+    {
+        var nodeType = node.GetType();
+        while (nodeType != null)
+        {
+            if (_fabrics.TryGetValue(nodeType, out var fabric))
+            {
+                return fabric.CreateForProperty(property, node);
+            }
+
+            nodeType = nodeType.BaseType;
+        }
+
+        return null;
+    }
+
     public interface IConcreteNodePortFabric
     {
         Port CreateForObject(Object obj, Node node);
         Port CreateForProperty(SerializedProperty serializedProperty, Node node);
     }
-    
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ConcretePortFabricAttribute : Attribute
-    {
-        public readonly Type Type;
 
-        public ConcretePortFabricAttribute(Type type)
+    public interface IPortFabric
+    {
+        Port CreateForObject(object obj, Node node);
+    }
+
+    [ConcreteNodePortFabric(typeof(Node))]
+    public class DefaultNodePortDrawer : IConcreteNodePortFabric
+    {
+        private static Dictionary<Type, IPortFabric<>> _portFabric = new Dictionary<Type, IPortFabric<>>();
+
+        private static Dictionary<Type, IPropertyPortFabric> _propertyPortFabrics =
+            new Dictionary<Type, IPropertyPortFabric>();
+
+        static DefaultNodePortDrawer()
         {
-            Type = type;
+            var linq = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(t => typeof(IPortFabric<>).IsAssignableFrom(t))
+                .Select(t => (t, t.GetCustomAttribute<ConcretePortFabricAttribute>()))
+                .Where(tuple => tuple.Item2 != null && typeof(Object).IsAssignableFrom(tuple.Item2.Type));
+            foreach (var valueTuple in linq)
+            {
+                _portFabric[valueTuple.Item2.Type] = Activator.CreateInstance(valueTuple.t) as IPortFabric<>;
+            }
+
+            linq = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(t => typeof(IPortFabric<>).IsAssignableFrom(t))
+                .Select(t => (t, t.GetCustomAttribute<ConcretePortFabricAttribute>()))
+                .Where(tuple => tuple.Item2 != null && typeof(Object).IsAssignableFrom(tuple.Item2.Type));
+            foreach (var valueTuple in linq)
+            {
+                _portFabric[valueTuple.Item2.Type] = Activator.CreateInstance(valueTuple.t) as IPortFabric<>;
+            }
+        }
+
+        public Port CreateForObject(Object obj, Node node)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Port CreateForProperty(SerializedProperty serializedProperty, Node node)
+        {
+            throw new NotImplementedException();
         }
     }
-    
-    public interface IConcretePortFabric
+}
+
+[AttributeUsage(AttributeTargets.Class)]
+public class ConcreteNodePortFabricAttribute : Attribute
+{
+    public readonly Type Type;
+
+    public ConcreteNodePortFabricAttribute(Type type)
     {
-        Port CreateForObject(Object obj, Node node);
-        Port CreateForProperty(SerializedProperty serializedProperty, Node node);
+        Type = type;
     }
 }
